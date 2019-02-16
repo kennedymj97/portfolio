@@ -5,7 +5,7 @@ const navDot = (props) => (
     <button className='fas fa-circle navDot' onClick={props.clicked} />
     <style jsx>{`
         .navDot {
-            color: #333333;
+            color: #0076ff;
             background: none;
             border: none;
             outline: none;

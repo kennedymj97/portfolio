@@ -9,10 +9,16 @@ const carousel = (props) => {
 	const [ windowWidth, setWindowWidth ] = useState(process.browser ? window.innerWidth : undefined);
 
 	useEffect(() => {
+		const logWindowWidth = () => {
+			setWindowWidth(window.innerWidth);
+		};
+
 		if (process.browser) {
-			window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+			window.addEventListener('resize', logWindowWidth);
+			setTranslateValue(getCardWidth() * indexTransitionFactor);
+
+			return () => window.removeEventListener('resize', logWindowWidth);
 		}
-		setTranslateValue(getCardWidth() * indexTransitionFactor);
 	});
 
 	const projects = [
@@ -79,32 +85,24 @@ const carousel = (props) => {
 			</div>
 			<style jsx>{`
 				.carousel {
-					grid-column: 1/13;
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
 					box-sizing: border-box;
-					// overflow: hidden;
 					position: relative;
+					width: 100%;
 				}
 
 				.slider {
 					display: flex;
-					flex-direction: row;
 					justify-content: space-between;
 					align-items: center;
 					overflow: hidden;
 					width: 100%;
 					padding: 13px;
-					// box-sizing: border-box;
-					// margin-left: 50px;
-					// margin: 0 150px 0 150px;
-					// position: relative;
-				}
-
-				.carousel-button {
-					grid-column: 6;
+					padding-left: 12.5%;
+					min-height: 426px;
 				}
 
 				.navDots {
@@ -115,7 +113,7 @@ const carousel = (props) => {
 				.arrow {
 					z-index: 100;
 					font-size: 40px;
-					color: #333333;
+					color: #0076ff;
 					text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 					transition: opacity 0.3s ease-in, visibility 0.3s;
 					cursor: pointer;
@@ -123,13 +121,13 @@ const carousel = (props) => {
 				}
 
 				.arrow-left {
-					left: -60px;
+					left: 7%;
 					visibility: ${currentIndex === 0 ? 'hidden' : 'visible'};
 					opacity: ${currentIndex === 0 ? '0' : '1'};
 				}
 
 				.arrow-right {
-					right: 9%;
+					right: 7%;
 					visibility: ${currentIndex === projects.length - 2 ? 'hidden' : 'visible'};
 					opacity: ${currentIndex === projects.length - 2 ? '0' : '1'};
 				}

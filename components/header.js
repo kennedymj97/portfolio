@@ -4,23 +4,37 @@ import WordSlider from './wordSlider';
 const header = (props) => (
 	<React.Fragment>
 		<header className="header">
-			<h1>Matthew Kennedy</h1>
-			<h2 className="title-2">
-				<div className="animation">
-					<WordSlider duration={2000}>
-						<span>Artificial Intelligence</span>
-						<span>Web Development</span>
-						<span>Always Learning</span>
-					</WordSlider>
-				</div>
-			</h2>
+			<div className="header-container">
+				<h1 className="title-1">Matthew Kennedy</h1>
+				<h2 className="title-2">
+					<div className="animation">
+						<WordSlider duration={2000}>
+							<span>Artificial Intelligence</span>
+							<span>Web Development</span>
+							<span>Always Learning</span>
+						</WordSlider>
+					</div>
+				</h2>
+			</div>
 		</header>
 		<style jsx>{`
 			.header {
+				// background: #0076ff;
+				// color: white;
+			}
+
+			.header-container {
+				max-width: 1024px;
+				margin: 3rem auto 0 auto;
 				display: block;
 				text-align: center;
 				text-rendering: optimizeLegibility;
 				text-size-adjust: 100%;
+				border-bottom: 1px groove black;
+			}
+
+			.title-1 {
+				margin-top: 0;
 			}
 
 			.title-2 {

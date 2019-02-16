@@ -16,7 +16,9 @@ const about = (props) => (
 			.about {
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
+				align-items: center;
+				max-width: 1024px;
+				margin: 3rem auto 3rem auto;
             }
             
             .about img {

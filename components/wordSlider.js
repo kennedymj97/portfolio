@@ -13,6 +13,8 @@ const wordSlider = (props) => {
 
 	useEffect(() => {
 		animation = setInterval(() => setIndex((index) => (index + 1) % children.length), props.duration || 1500);
+
+		return () => clearInterval(animation);
 	}, []);
 
 	return transitions.map(({ item, props, key }) => (
