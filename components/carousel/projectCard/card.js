@@ -54,8 +54,7 @@ const card = props => {
       <style jsx>{`
         .card {
           height: ${props.active ? "400px" : "360px"};
-          min-width: 42.5%;
-          max-width: 49%;
+          width: 49%;
           border-radius: 10px;
           box-shadow: ${props.active
             ? "0 4px 8px 0 rgba(60, 64, 67, 0.3), 0 4px 12px 4px rgba(60, 64, 67, 0.15)"
