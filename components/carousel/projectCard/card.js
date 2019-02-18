@@ -14,7 +14,7 @@ const card = props => {
       const res = await fetch(
         `https://raw.githubusercontent.com/kennedymj97/${
           props.name
-        }/master/project_info.json`
+        }/master/project-info.json`
       );
       const data = await res.json();
       setProjectInfo(data.data);
@@ -55,6 +55,7 @@ const card = props => {
         .card {
           height: ${props.active ? "400px" : "360px"};
           min-width: 42.5%;
+          max-width: 49%;
           border-radius: 10px;
           box-shadow: ${props.active
             ? "0 4px 8px 0 rgba(60, 64, 67, 0.3), 0 4px 12px 4px rgba(60, 64, 67, 0.15)"
@@ -67,8 +68,8 @@ const card = props => {
           align-content: flex-end;
           justify-content: flex-end;
           opacity: ${props.active ? "1" : "0.3"};
-		  margin-right: 16px;
-		  background: white;
+          // margin-right: 16px;
+          background: white;
           transform: translateX(${props.translate}px);
           transition: all 0.6s ease-out;
         }

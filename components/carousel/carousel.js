@@ -113,7 +113,7 @@ const carousel = props => {
           overflow: hidden;
           width: 100%;
           padding: 13px;
-          padding-left: 12.5%;
+          // padding-left: 12.5%;
           min-height: 426px;
         }
 

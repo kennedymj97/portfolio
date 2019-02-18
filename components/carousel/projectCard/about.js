@@ -31,8 +31,6 @@ const about = (props) => {
 							)
 						}
 						onClick={expansionHandler}
-						aria-expanded={height === 'auto'}
-						aria-label="Show more"
 					>
 						<ExpandMoreIcon />
 					</IconButton>
@@ -58,7 +56,7 @@ const about = (props) => {
 			<style jsx>{`
 				.about {
 					min-height: min-content;
-					width: 100%;
+					max-width: 100%;
 					display: flex;
 					flex-direction: column;
 					jusitfy-content: center;
