@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Image from "./image";
-import About from "./about";
+import About from "./info";
 import fetch from "isomorphic-unfetch";
 import Spinner from "../../spinner";
 
 const card = props => {
   const [projectInfo, setProjectInfo] = useState(null);
-
-  console.log(props.name);
 
   const fetchData = async () => {
     try {
@@ -27,8 +25,6 @@ const card = props => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(projectInfo);
 
   let information = <Spinner />;
   if (projectInfo) {

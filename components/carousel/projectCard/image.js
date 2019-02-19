@@ -12,8 +12,6 @@ const image = (props) => {
 		};
 	});
 
-	// console.log(loading)
-
 	let image = <Spinner />;
 	if (!loading) {
 		image = <img src={props.url} style={{objectFit: 'cover', flex: '1', width: '100%'}} />;

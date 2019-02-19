@@ -3,7 +3,7 @@ import WordSlider from './wordSlider';
 
 const header = (props) => (
 	<React.Fragment>
-		<header className="header">
+		<header className="header" id='header'>
 			<div className="header-container">
 				<h1 className="title-1">Matthew Kennedy</h1>
 				<h2 className="title-2">
@@ -21,20 +21,23 @@ const header = (props) => (
 			.header {
 				// background: #0076ff;
 				// color: white;
+				// padding: 3rem 0;
 			}
 
 			.header-container {
 				max-width: 1024px;
-				margin: 3rem auto 0 auto;
+				margin: 0 auto;
 				display: block;
 				text-align: center;
 				text-rendering: optimizeLegibility;
 				text-size-adjust: 100%;
+				padding: 8rem 0 4rem 0;
 				border-bottom: 1px groove black;
 			}
 
 			.title-1 {
 				margin-top: 0;
+				font-size: 2.4rem;
 			}
 
 			.title-2 {

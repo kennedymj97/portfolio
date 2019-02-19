@@ -5,13 +5,13 @@ const education = (props) => (
 		<section className="education">
 			<h2>Education</h2>
 			<div className="education-info-container">
-				<div className="education-info education-info-left">
+				<div className="education-info">
 					<h3>BEng Mechanical Engineeing Including an Industrial Year</h3>
-					<h4>Univeristy of Nottingham</h4>
+					<h4>Univeristy of Nottingham | 2015 - 2019</h4>
 					<p>First Class Honours</p>
 					<img src="../static/icons8-robot-96.png" className="education-info-icon" />
 				</div>
-				<div className="education-info education-info-right">
+				<div className="education-info">
 					<h3>A Levels</h3>
 					<div className="education-info-icons">
 						<div className="education-info-alevel">
@@ -40,11 +40,12 @@ const education = (props) => (
 				justify-content: center;
 				align-items: center;
 				max-width: 1024px;
-				margin: 2rem auto;
+				margin: 4rem auto;
 			}
 
 			.education-info-container {
 				display: flex;
+				flex-direction: column;
 				width: 100%;
 				justify-content: space-between;
 				padding: 0 7%;
@@ -55,14 +56,7 @@ const education = (props) => (
 				flex-direction: column;
 				align-items: center;
 				text-align: center;
-			}
-
-			.education-info-right {
-				margin-left: 2%;
-			}
-
-			.education-info-left {
-				margin-right: 2%;
+				margin-bottom: 30px;
 			}
 
 			.education-info p, h3, h4 {
@@ -74,11 +68,11 @@ const education = (props) => (
 			}
 
 			.education-info-icon {
-				width: 72px;
+				width: 56px;
 			}
 
 			.education-info-alevel {
-				padding: 0 10px 10px 10px;
+				padding: 0 20px;
 			}
 		`}</style>
 	</React.Fragment>

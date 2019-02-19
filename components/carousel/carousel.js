@@ -23,8 +23,6 @@ const carousel = (props) => {
 
 	const projects = props.projects;
 
-	console.log(projects);
-
 	const getCardWidth = () => {
 		if (process.browser) {
 			return document.querySelector('.card').clientWidth + 16;

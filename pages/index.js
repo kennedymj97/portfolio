@@ -22,7 +22,7 @@ Index.getInitialProps = async function() {
   const res = await fetch("https://api.github.com/users/kennedymj97/repos");
   const data = await res.json();
 
-  console.log(`Show data fetched. Count: ${data.length}`);
+  // console.log(`Show data fetched. Count: ${data.length}`);
 
   return {
     projects: data

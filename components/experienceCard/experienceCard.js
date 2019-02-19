@@ -18,8 +18,8 @@ const experienceCard = (props) => (
 				justify-content: space-between;
 				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
 				margin-bottom: 30px;
-                border-radius: 10px;
-                overflow: hidden;
+				border-radius: 10px;
+				overflow: hidden;
 			}
 
 			.experience-details {
@@ -31,18 +31,21 @@ const experienceCard = (props) => (
 				z-index: 5;
 			}
 
-			.role,
+			.role {
+				margin: 0 0 10px 0;
+			}
+
 			.place-date {
-				margin-bottom: 10px;
+				margin: 0;
 			}
 
 			.experiences {
 			}
 
 			.experience-image {
-                background-image: url(${props.imgSource});
-                background-size: cover;
-                background-repeat: no-repeat;
+				background-image: url(${props.imgSource});
+				background-size: cover;
+				background-repeat: no-repeat;
 				width: 40%;
 			}
 		`}</style>

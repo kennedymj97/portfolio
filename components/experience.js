@@ -54,16 +54,20 @@ const experience = (props) => {
 				<div className="experience-container">
 					<h2>Experience</h2>
 					<div className="experience-cards">{experienceCards}</div>
+					<a href="#header" className="back-to-top">
+						<span className="back-to-top-text">Back To Top</span>
+						<i className="fas fa-angle-up" />
+					</a>
 				</div>
 			</section>
 			<style jsx>{`
 				.experience {
-          width: 100%;
-          background: #f6f6f6;
+					width: 100%;
+					background: #f6f6f6;
 				}
 
 				.experience-container {
-          padding: 2rem 0;
+					padding: 4rem 0 70px;
 					align-items: center;
 					justify-content: center;
 					max-width: 1024px;
@@ -73,7 +77,26 @@ const experience = (props) => {
 				}
 
 				.experience-cards {
-          width: 100%;
+					width: 100%;
+				}
+
+				.back-to-top {
+					text-decoration: none;
+					color: #0076ff;
+					border-radius: 7px;
+					transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+					padding: 0.25rem 0.5rem;
+					margin: -0.25rem -0.5rem;
+					cursor: pointer;
+					margin-top: 30px;
+				}
+
+				.back-to-top:hover {
+					background: rgba(0, 118, 255, 0.1);
+				}
+
+				.back-to-top-text {
+					padding-right: 10px;
 				}
 			`}</style>
 		</React.Fragment>

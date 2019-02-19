@@ -28,7 +28,7 @@ const projects = props => (
 
       .projects-container {
         max-width: 1024px;
-        padding: 2rem 0;
+        padding: 4rem 0;
         margin: 0 auto;
         display: flex;
         flex-direction: column;

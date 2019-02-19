@@ -44,12 +44,13 @@ const about = (props) => {
 							display: 'flex',
 							alignSelf: 'center',
 							justifySelf: 'center',
+							width: '180px',
 							maxWidth: '80%',
 							margin: 'auto'
 						}}
 						href={props.repo}
 					>
-						<span className="button-text">View on GitHub</span> <i className="fab fa-github fa-3x" />
+						<span className="button-text">View on GitHub</span> <i className="fab fa-github fa-2x" />
 					</Button>
 				</AnimateHeight>
 			</div>

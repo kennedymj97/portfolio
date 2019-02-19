@@ -8,7 +8,7 @@ const page = (props) => (
 			<title>{props.title || 'MK - Portfolio'}</title>
 			<meta name="description" content={props.description || "Matthew Kennedy's Portfolio"} />
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<link rel="icon" href="/static/favicon.ico" />
+			<link rel="icon" href="/static/icon.jpg" />
 			<link
 				rel="stylesheet"
 				href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -27,6 +27,7 @@ const page = (props) => (
 				-webkit-text-size-adjust: 100%;
 				height: 100%;
 				box-sizing: border-box;
+				scroll-behavior: smooth;
 			}
 			*,
 			*:before,
@@ -48,7 +49,6 @@ const page = (props) => (
 				text-rendering: optimizeLegibility;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
-				scroll-behavior: smooth;
 			}
 			html,
 			body {
