@@ -4,8 +4,8 @@ const experienceCard = (props) => (
 	<React.Fragment>
 		<div className="experience-card">
 			<div className="experience-details">
-				<span className="role">{props.role}</span>
-				<span className="place-date">{props.placeDate}</span>
+				<h3 className="role">{props.role}</h3>
+				<h4 className="place-date">{props.placeDate}</h4>
 				<ul>{props.experiences.map((ele, idx) => <li key={idx}>{ele}</li>)}</ul>
 			</div>
 			<div className="experience-image" />
@@ -16,7 +16,7 @@ const experienceCard = (props) => (
 				display: flex;
 				flex-flow: row;
 				justify-content: space-between;
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
 				margin-bottom: 30px;
                 border-radius: 10px;
                 overflow: hidden;
@@ -26,7 +26,9 @@ const experienceCard = (props) => (
 				display: flex;
 				flex-flow: column wrap;
 				padding: 13px;
-				width: 70%;
+				width: 60%;
+				box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.24), 1px 0 3px 1px rgba(0, 0, 0, 0.12);
+				z-index: 5;
 			}
 
 			.role,
@@ -41,7 +43,7 @@ const experienceCard = (props) => (
                 background-image: url(${props.imgSource});
                 background-size: cover;
                 background-repeat: no-repeat;
-                width: 25%;
+				width: 40%;
 			}
 		`}</style>
 	</React.Fragment>

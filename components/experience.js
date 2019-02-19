@@ -13,7 +13,7 @@ const experience = (props) => {
 				'Learning; have gone from having never written a line of python code to having 2 patents based on deep learning in 6 months.',
 				'Gained experience with Python (PyTorch, Fastai, Django Rest Framework, OpenCV), Javascript (React) and HTML and CSS.'
 			],
-			imgSource: '../../static/lorem.jpg'
+			imgSource: '../../static/comp_vision.png'
 		},
 		{
 			id: 1,
@@ -23,7 +23,7 @@ const experience = (props) => {
 				'Created and led sessions with a team of volunteers, using imaginative games to teach children important life skills.',
 				'Assisted with the training of new volunteers.'
 			],
-			imgSource: '../../static/lorem.jpg'
+			imgSource: '../../static/sports_leader.png'
 		},
 		{
 			id: 2,
@@ -34,7 +34,7 @@ const experience = (props) => {
 				'Carred out fish surveys and coral propagation projects to monitor and preserve coral reefs.',
 				'Educated young people in the local population on conservation'
 			],
-			imgSource: '../../static/lorem.jpg'
+			imgSource: '../../static/conservation.jpg'
 		}
 	];
 

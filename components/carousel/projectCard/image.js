@@ -16,7 +16,7 @@ const image = (props) => {
 
 	let image = <Spinner />;
 	if (!loading) {
-		image = <img src={props.url} style={{objectFit: 'cover', height: '100%'}} />;
+		image = <img src={props.url} style={{objectFit: 'cover', flex: '1', width: '100%'}} />;
 	}
 
 	return (
@@ -26,8 +26,6 @@ const image = (props) => {
                 .image2 {
                     object-fit: contain;
 					flex-shrink: 1;
-					max-width: 100%;
-					max-height: 100%;
                 }
             `}</style>
 		</React.Fragment>

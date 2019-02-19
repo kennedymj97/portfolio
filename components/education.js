@@ -6,26 +6,26 @@ const education = (props) => (
 			<h2>Education</h2>
 			<div className="education-info-container">
 				<div className="education-info education-info-left">
-					<p>BEng Mechanical Engineeing Including an Industrial Year</p>
-					<p>Univeristy of Nottingham</p>
+					<h3>BEng Mechanical Engineeing Including an Industrial Year</h3>
+					<h4>Univeristy of Nottingham</h4>
 					<p>First Class Honours</p>
 					<img src="../static/icons8-robot-96.png" className="education-info-icon" />
 				</div>
 				<div className="education-info education-info-right">
-					<p>A Levels</p>
+					<h3>A Levels</h3>
 					<div className="education-info-icons">
 						<div className="education-info-alevel">
-							<p>Maths</p>
+							<h4>Maths</h4>
 							<p>A*</p>
 							<img src="../static/icons8-math-96.png" className="education-info-icon"/>
 						</div>
 						<div className="education-info-alevel">
-							<p>Physics</p>
+							<h4>Physics</h4>
 							<p>A*</p>
 							<img src="../static/icons8-physics-96.png" className="education-info-icon"/>
 						</div>
 						<div className="education-info-alevel">
-							<p>Further Maths</p>
+							<h4>Further Maths</h4>
 							<p>A</p>
 							<img src="../static/icons8-formula-fx-96.png" className="education-info-icon" />
 						</div>
@@ -54,7 +54,6 @@ const education = (props) => (
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				justify-content: center;
 				text-align: center;
 			}
 
@@ -66,7 +65,7 @@ const education = (props) => (
 				margin-right: 2%;
 			}
 
-			.education-info p {
+			.education-info p, h3, h4 {
 				margin: 0;
 			}
 
@@ -79,7 +78,7 @@ const education = (props) => (
 			}
 
 			.education-info-alevel {
-				padding: 10px;
+				padding: 0 10px 10px 10px;
 			}
 		`}</style>
 	</React.Fragment>
