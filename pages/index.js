@@ -1,10 +1,10 @@
 import React from "react";
 import Page from "../components/page";
-import Header from "../components/header";
-import About from "../components/about";
-import Projects from "../components/projects";
-import Education from "../components/education";
-import Experience from "../components/experience";
+import Header from "../components/home/header";
+import About from "../components/home/about";
+import Projects from "../components/home/projects";
+import Education from "../components/home/education";
+import Experience from "../components/home/experience";
 import Footer from "../components/footer";
 
 const Index = (props) => (

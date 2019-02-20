@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "./image";
 import About from "./info";
 import fetch from "isomorphic-unfetch";
-import Spinner from "../../spinner";
+import Spinner from "../../../spinner";
 
 const card = props => {
   const [projectInfo, setProjectInfo] = useState(null);

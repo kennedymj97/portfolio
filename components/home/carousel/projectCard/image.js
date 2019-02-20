@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Spinner from '../../spinner';
+import Spinner from '../../../spinner';
 
 const image = (props) => {
 	const [ loading, setLoading ] = useState(true);
