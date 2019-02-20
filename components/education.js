@@ -6,28 +6,28 @@ const education = (props) => (
 			<h2>Education</h2>
 			<div className="education-info-container">
 				<div className="education-info">
-					<h3>BEng Mechanical Engineeing Including an Industrial Year</h3>
-					<h4>Univeristy of Nottingham | 2015 - 2019</h4>
+					<h3>BEng Mechanical Engineering Including an Industrial Year</h3>
+					<h4>University of Nottingham | 2015 - 2019</h4>
 					<p>First Class Honours</p>
 					<img src="../static/icons8-robot-96.png" className="education-info-icon" />
 				</div>
 				<div className="education-info">
-					<h3 style={{marginBottom: '8px'}}>A Levels</h3>
+					<h3 style={{ marginBottom: '8px' }}>A Levels</h3>
 					<div className="education-info-icons">
 						<div className="education-info-alevel">
 							<h4>Maths</h4>
 							<p>A*</p>
-							<img src="../static/icons8-math-96.png" className="education-info-icon"/>
-						</div>
-						<div className="education-info-alevel">
-							<h4>Physics</h4>
-							<p>A*</p>
-							<img src="../static/icons8-physics-96.png" className="education-info-icon"/>
+							<img src="../static/icons8-math-96.png" className="education-info-icon" />
 						</div>
 						<div className="education-info-alevel">
 							<h4>Further Maths</h4>
 							<p>A</p>
 							<img src="../static/icons8-formula-fx-96.png" className="education-info-icon" />
+						</div>
+						<div className="education-info-alevel">
+							<h4>Physics</h4>
+							<p>A*</p>
+							<img src="../static/icons8-physics-96.png" className="education-info-icon" />
 						</div>
 					</div>
 				</div>
@@ -59,7 +59,9 @@ const education = (props) => (
 				margin-bottom: 30px;
 			}
 
-			.education-info p, h3, h4 {
+			.education-info p,
+			h3,
+			h4 {
 				margin: 0;
 			}
 
