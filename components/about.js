@@ -14,7 +14,7 @@ const about = (props) => (
 				justify-content: space-between;
 				align-items: center;
 				max-width: 1024px;
-				margin: 7rem auto;
+				margin: 5rem auto;
 			}
 
 			.about-img {

@@ -17,6 +17,7 @@ const experienceCard = (props) => (
 				flex-flow: row;
 				justify-content: space-between;
 				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
+				// box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
 				margin-bottom: 30px;
 				border-radius: 10px;
 				overflow: hidden;

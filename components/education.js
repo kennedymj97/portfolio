@@ -12,7 +12,7 @@ const education = (props) => (
 					<img src="../static/icons8-robot-96.png" className="education-info-icon" />
 				</div>
 				<div className="education-info">
-					<h3>A Levels</h3>
+					<h3 style={{marginBottom: '8px'}}>A Levels</h3>
 					<div className="education-info-icons">
 						<div className="education-info-alevel">
 							<h4>Maths</h4>

@@ -10,10 +10,9 @@ const experience = (props) => {
 			experiences: [
 				'Researching and developing deep learning applications. Currently have 2 patents being produced based on my work.',
 				'Designing, testing and implementing IoT vision systems.',
-				'Learning; have gone from having never written a line of python code to having 2 patents based on deep learning in 6 months.',
-				'Gained experience with Python (PyTorch, Fastai, Django Rest Framework, OpenCV), Javascript (React) and HTML and CSS.'
+				'Gained experience with Python (PyTorch, Fastai, Django Rest Framework, OpenCV), Javascript (React, Next.js), HTML and CSS.'
 			],
-			imgSource: '../../static/comp_vision.png'
+			imgSource: '../../static/code.png'
 		},
 		{
 			id: 1,
@@ -52,7 +51,7 @@ const experience = (props) => {
 		<React.Fragment>
 			<section className="experience">
 				<div className="experience-container">
-					<h2>Experience</h2>
+					<h2 style={{marginBottom: '30px'}}>Experience</h2>
 					<div className="experience-cards">{experienceCards}</div>
 					<a href="#header" className="back-to-top">
 						<span className="back-to-top-text">Back To Top</span>

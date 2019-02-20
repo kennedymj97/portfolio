@@ -65,6 +65,7 @@ const about = (props) => {
 					box-sizing: border-box;
 					transition: max-height 0.5s ease-in;
 					background: white;
+					box-shadow: 0 -1px 2px 0 rgba(60, 64, 67, 0.3), 0 -1px 3px 1px rgba(60, 64, 67, 0.15);
 				}
 
 				.card-header {
