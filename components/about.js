@@ -19,7 +19,7 @@ const about = (props) => (
 
 			.about-img {
 				border-radius: 50%;
-				height: 300px;
+				height: 250px;
 			}
 
 			.about-quote {
