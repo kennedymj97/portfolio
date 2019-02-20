@@ -23,6 +23,8 @@ const carousel = (props) => {
 
 	const projects = props.projects;
 
+	console.log(projects)
+
 	const getCardWidth = () => {
 		if (process.browser) {
 			return document.querySelector('.card').clientWidth + 16;
@@ -63,7 +65,7 @@ const carousel = (props) => {
 		/>
 	));
 
-	let navDots;
+	let navDots = [];
 	if (projects.length > 2) {
 		for (let i = 0; i < projects.length - 1; i++) {
 			navDots = [
@@ -101,7 +103,7 @@ const carousel = (props) => {
 					overflow: hidden;
 					width: 100%;
 					padding: 13px;
-					// padding-left: 12.5%;
+					padding-left: 12.5%;
 					min-height: 426px;
 				}
 

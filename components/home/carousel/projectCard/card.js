@@ -50,7 +50,7 @@ const card = props => {
       <style jsx>{`
         .card {
           height: ${props.active ? "400px" : "360px"};
-          width: 49%;
+          min-width: 42.5%;
           border-radius: 10px;
           box-shadow: ${props.active
             ? "0 4px 8px 0 rgba(60, 64, 67, 0.3), 0 4px 12px 4px rgba(60, 64, 67, 0.15)"
@@ -63,7 +63,7 @@ const card = props => {
           align-content: flex-end;
           justify-content: flex-end;
           opacity: ${props.active ? "1" : "0.3"};
-          // margin-right: 16px;
+          margin-right: 16px;
           background: white;
           transform: translateX(${props.translate}px);
           transition: all 0.6s ease-out;
