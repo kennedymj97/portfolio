@@ -12,7 +12,7 @@ const education = (props) => (
 					<img src="../static/icons8-robot-96.png" className="education-info-icon" />
 				</div>
 				<div className="education-info">
-					<h3 style={{ marginBottom: '8px' }}>A Levels</h3>
+					<h3>A Levels</h3>
 					<div className="education-info-icons">
 						<div className="education-info-alevel">
 							<h4>Maths</h4>
@@ -59,10 +59,17 @@ const education = (props) => (
 				margin-bottom: 30px;
 			}
 
+			@media(max-width: 600px) {
+				.education {
+					max-width: 90%;
+					margin: 2rem auto;
+				}
+			}
+
 			.education-info p,
 			h3,
 			h4 {
-				margin: 0;
+				margin: 0 0 8px 0;
 			}
 
 			.education-info-icons {

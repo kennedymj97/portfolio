@@ -16,7 +16,8 @@ const projects = props => (
             boxShadow: "0 4px 14px 0 rgba(0,118,255,0.39)"
           }}
         >
-          View All Projects
+          <span className='projects-button-text'>View All Projects</span>
+          <i className="fab fa-github fa-2x" />
         </Button>
       </div>
     </section>
@@ -34,6 +35,10 @@ const projects = props => (
         flex-direction: column;
         justify-content: center;
         align-items: center;
+      }
+
+      .projects-button-text {
+        margin-right: 8px;
       }
     `}</style>
   </React.Fragment>

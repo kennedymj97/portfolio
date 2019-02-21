@@ -66,7 +66,7 @@ const experience = (props) => {
 				}
 
 				.experience-container {
-					padding: 4rem 0 70px;
+					padding: 2rem 0 55px;
 					align-items: center;
 					justify-content: center;
 					max-width: 1024px;
@@ -77,6 +77,12 @@ const experience = (props) => {
 
 				.experience-cards {
 					width: 100%;
+				}
+
+				@media (max-width: 600px) {
+					.experience-container {
+						max-width: 90%;
+					}
 				}
 
 				.back-to-top {

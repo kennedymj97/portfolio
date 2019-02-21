@@ -14,7 +14,6 @@ const experienceCard = (props) => (
 			.experience-card {
 				background: white;
 				display: flex;
-				flex-flow: row;
 				justify-content: space-between;
 				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
 				// box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
@@ -48,6 +47,26 @@ const experienceCard = (props) => (
 				background-size: cover;
 				background-repeat: no-repeat;
 				width: 40%;
+			}
+
+			@media (max-width: 600px) {
+				.experience-card {
+					flex-direction: column;
+				}
+
+				.experience-details {
+					width: 100%;
+					box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
+				}
+
+				.experience-image {
+					width: 100%;
+					height: 200px;
+				}
+
+				.role, .place-date {
+					text-align: center;
+				}
 			}
 		`}</style>
 	</React.Fragment>

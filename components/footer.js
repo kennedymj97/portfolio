@@ -41,6 +41,7 @@ const footer = (props) => (
 				align-items: center;
 				font-wieght: 500;
 				font-size: 16px;
+				text-align: center;
 			}
 
 			.footer-contact {

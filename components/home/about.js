@@ -3,7 +3,7 @@ import React from 'react';
 const about = (props) => (
 	<React.Fragment>
 		<section className="about">
-			<img className='about-img' src="../static/snowden1.jpg" />
+			{/* <img className='about-img' src="../static/snowden1.jpg" /> */}
 			<blockquote className='about-quote'>
 				I want to work at the forefront of technology; building products, solving complex problems and learning every day.
 			</blockquote>
@@ -23,7 +23,19 @@ const about = (props) => (
 			}
 
 			.about-quote {
-				font-size: 1.2rem;
+				font-size: 1.5rem;
+				text-align: center;
+			}
+
+			@media (max-width: 600px) {
+				.about {
+					max-width: 90%;
+					margin: 3rem auto;
+				}
+
+				.about-quote {
+					font-size: 1.2em;
+				}
 			}
 		`}</style>
 	</React.Fragment>

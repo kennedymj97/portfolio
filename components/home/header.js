@@ -42,8 +42,22 @@ const header = (props) => (
 
 			.title-2 {
 				font-size: 2.887rem;
-				margin-top: -4.2rem;
+				margin-top: -2.8rem;
 				margin-bottom: 0;
+			}
+
+			@media (max-width: 600px) {
+				.header-container {
+					max-width: 80%;
+				}
+
+				.title-1 {
+					font-size: 1.7em;
+				}
+
+				.title-2 {
+					font-size: 2.0em;
+				}
 			}
 
 			.animation {
