@@ -68,6 +68,12 @@ const card = props => {
           transform: translateX(${props.translate}px);
           transition: all 0.6s ease-out;
         }
+
+        @media(max-width: 900px) {
+          .card {
+            min-width: 85%;
+          }
+        }
       `}</style>
     </React.Fragment>
   );

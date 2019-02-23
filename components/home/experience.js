@@ -81,7 +81,7 @@ const experience = (props) => {
 
 				@media (max-width: 600px) {
 					.experience-container {
-						max-width: 90%;
+						max-width: 85%;
 					}
 				}
 

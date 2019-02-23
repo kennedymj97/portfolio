@@ -61,7 +61,7 @@ const education = (props) => (
 
 			@media(max-width: 600px) {
 				.education {
-					max-width: 90%;
+					max-width: 85%;
 					margin: 2rem auto;
 				}
 			}

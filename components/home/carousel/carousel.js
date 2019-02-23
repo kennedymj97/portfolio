@@ -1,141 +1,236 @@
-import React, { useState, useEffect } from 'react';
-import Card from './projectCard/card';
-import NavDot from './navDot/navDot';
+import React, { useState, useEffect } from "react";
+import Card from "./projectCard/card";
+import NavDot from "./navDot/navDot";
+import { readSync } from "fs";
 
-const carousel = (props) => {
-	const [ currentIndex, setCurrentIndex ] = useState(0);
-	const [ indexTransitionFactor, setIndexTransitionFactor ] = useState(0);
-	const [ translateValue, setTranslateValue ] = useState(0);
-	const [ windowWidth, setWindowWidth ] = useState(process.browser ? window.innerWidth : undefined);
+const carousel = props => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [indexTransitionFactor, setIndexTransitionFactor] = useState(0);
+  const [translateValue, setTranslateValue] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(
+    process.browser ? window.innerWidth : undefined
+  );
 
-	useEffect(() => {
-		const logWindowWidth = () => {
-			setWindowWidth(window.innerWidth);
-		};
+  useEffect(() => {
+    const logWindowWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
-		if (process.browser) {
-			window.addEventListener('resize', logWindowWidth);
-			setTranslateValue(getCardWidth() * indexTransitionFactor);
+    if (process.browser) {
+      window.addEventListener("resize", logWindowWidth);
+      setTranslateValue(getCardWidth() * indexTransitionFactor);
 
-			return () => window.removeEventListener('resize', logWindowWidth);
-		}
-	});
+      return () => window.removeEventListener("resize", logWindowWidth);
+    }
+  });
 
-	const projects = props.projects;
+  const projects = props.projects;
 
-	// console.log(projects)
+  // console.log(projects)
 
-	const getCardWidth = () => {
-		if (process.browser) {
-			return document.querySelector('.card').clientWidth + 16;
-		}
-	};
+  const getCardWidth = () => {
+    if (process.browser) {
+      return document.querySelector(".card").clientWidth + 16;
+    }
+  };
 
-	const nextCardHandler = () => {
-		if (currentIndex === projects.length - 2) {
-			return;
-		}
+  let arrowRightStyles =
+    (windowWidth > 900 && currentIndex === projects.length - 2) ||
+    currentIndex === projects.length - 1
+      ? { visibility: "hidden", opacity: "0" }
+      : { visibility: "visible", opacity: "1" };
 
-		setCurrentIndex(currentIndex + 1);
-		setIndexTransitionFactor(indexTransitionFactor - 1);
-	};
+  const nextCardHandler = () => {
+    if (
+      (windowWidth > 900 && currentIndex === projects.length - 2) ||
+      currentIndex === projects.length - 1
+    ) {
+      return;
+    }
 
-	const prevCardHandler = () => {
-		if (currentIndex === 0) {
-			return;
-		}
+    setCurrentIndex(currentIndex + 1);
+    setIndexTransitionFactor(indexTransitionFactor - 1);
+  };
 
-		setCurrentIndex(currentIndex - 1);
-		setIndexTransitionFactor(indexTransitionFactor + 1);
-	};
+  const prevCardHandler = () => {
+    if (currentIndex === 0) {
+      return;
+    }
 
-	const goToIndexHandler = (index) => {
-		setCurrentIndex(index);
-		setIndexTransitionFactor(-index);
-	};
+    setCurrentIndex(currentIndex - 1);
+    setIndexTransitionFactor(indexTransitionFactor + 1);
+  };
 
-	let cards = projects.map((ele, idx) => (
-		<Card
-			key={ele.id}
-			active={idx === currentIndex || idx === currentIndex + 1}
-			title={ele.title}
-			summary={ele.summary}
-			translate={translateValue}
-			name={ele.name}
-		/>
-	));
+  const goToIndexHandler = index => {
+    setCurrentIndex(index);
+    setIndexTransitionFactor(-index);
+  };
 
-	let navDots = [];
-	if (projects.length > 2) {
-		for (let i = 0; i < projects.length - 1; i++) {
-			navDots = [
-				...navDots,
-				<NavDot key={i} active={i === currentIndex} clicked={() => goToIndexHandler(i)} />
-			];
-		}
-	}
+  let cards;
+  let navDots = [];
+  let responsiveCarousel;
 
-	return (
-		<React.Fragment>
-			<div className="carousel">
-				<div className="slider">
-					<i className="arrow arrow-left fas fa-chevron-circle-left" onClick={prevCardHandler} />
-					{cards}
-					<i className="arrow arrow-right fas fa-chevron-circle-right" onClick={nextCardHandler} />
-				</div>
-				<div className="navDots">{navDots}</div>
-			</div>
-			<style jsx>{`
-				.carousel {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-					box-sizing: border-box;
-					position: relative;
-					width: 100%;
-				}
+  if (windowWidth > 900) {
+    cards = projects.map((ele, idx) => (
+      <Card
+        key={ele.id}
+        active={idx === currentIndex || idx === currentIndex + 1}
+        title={ele.title}
+        summary={ele.summary}
+        translate={translateValue}
+        name={ele.name}
+      />
+    ));
 
-				.slider {
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-					overflow: hidden;
-					width: 100%;
-					padding: 13px;
-					padding-left: 12.5%;
-					min-height: 426px;
-				}
+    if (projects.length > 2) {
+      for (let i = 0; i < projects.length - 1; i++) {
+        navDots = [
+          ...navDots,
+          <NavDot
+            key={i}
+            active={i === currentIndex}
+            clicked={() => goToIndexHandler(i)}
+          />
+        ];
+      }
+    }
 
-				.navDots {
-					display: flex;
-					margin: 20px;
-				}
+    responsiveCarousel = (
+      <React.Fragment>
+        <div className="slider">
+          <i
+            className="arrow arrow-left fas fa-chevron-circle-left"
+            onClick={prevCardHandler}
+          />
+          {cards}
+          <i
+            className="arrow arrow-right fas fa-chevron-circle-right"
+            onClick={nextCardHandler}
+          />
+        </div>
+        <div className="navDots">{navDots}</div>
+      </React.Fragment>
+    );
+  } else {
+    cards = projects.map((ele, idx) => (
+      <Card
+        key={ele.id}
+        active={idx === currentIndex}
+        title={ele.title}
+        summary={ele.summary}
+        translate={translateValue}
+        name={ele.name}
+      />
+    ));
 
-				.arrow {
-					z-index: 100;
-					font-size: 40px;
-					color: #0076ff;
-					text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-					transition: opacity 0.3s ease-in, visibility 0.3s;
-					cursor: pointer;
-					position: absolute;
-				}
+    if (currentIndex === projects.legnth - 1) {
+      arrowRightVisibilty = "hidden";
+      arrowRightOpacity = "0";
+    }
 
-				.arrow-left {
-					left: 7%;
-					visibility: ${currentIndex === 0 ? 'hidden' : 'visible'};
-					opacity: ${currentIndex === 0 ? '0' : '1'};
-				}
+    if (projects.length > 2) {
+      for (let i = 0; i < projects.length; i++) {
+        navDots = [
+          ...navDots,
+          <NavDot
+            key={i}
+            active={i === currentIndex}
+            clicked={() => goToIndexHandler(i)}
+          />
+        ];
+      }
+    }
 
-				.arrow-right {
-					right: 7%;
-					visibility: ${currentIndex === projects.length - 2 ? 'hidden' : 'visible'};
-					opacity: ${currentIndex === projects.length - 2 ? '0' : '1'};
-				}
-			`}</style>
-		</React.Fragment>
-	);
+    responsiveCarousel = (
+      <React.Fragment>
+        <div className="slider">{cards}</div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "15px 0"
+          }}
+        >
+          <i
+            className="arrow arrow-left fas fa-chevron-circle-left"
+            onClick={prevCardHandler}
+          />
+          <div className="navDots">{navDots}</div>
+          <i
+            className="arrow arrow-right fas fa-chevron-circle-right"
+            onClick={nextCardHandler}
+          />
+        </div>
+      </React.Fragment>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <div className="carousel">{responsiveCarousel}</div>
+      <style jsx>{`
+        .carousel {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+          position: relative;
+          width: 100%;
+        }
+
+        :global(.slider) {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          overflow: hidden;
+          width: 100%;
+          padding: 13px;
+          padding-left: 12.5%;
+          min-height: 426px;
+        }
+
+        :global(.navDots) {
+          display: flex;
+          margin: 20px;
+        }
+
+        :global(.arrow) {
+          z-index: 100;
+          font-size: 40px;
+          color: #0076ff;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+          transition: opacity 0.3s ease-in, visibility 0.3s;
+          cursor: pointer;
+          position: absolute;
+        }
+
+        :global(.arrow-left) {
+          left: 7%;
+          visibility: ${currentIndex === 0 ? "hidden" : "visible"};
+          opacity: ${currentIndex === 0 ? "0" : "1"};
+        }
+
+        :global(.arrow-right) {
+          right: 7%;
+          visibility: ${arrowRightStyles.visibility};
+          opacity: ${arrowRightStyles.opacity};
+        }
+
+        @media (max-width: 900px) {
+          .slider {
+            padding-left: 14.2%;
+          }
+
+          :global(.arrow) {
+            position: static;
+          }
+        }
+      `}</style>
+    </React.Fragment>
+  );
 };
 
 export default carousel;

@@ -29,7 +29,7 @@ const about = (props) => (
 
 			@media (max-width: 600px) {
 				.about {
-					max-width: 90%;
+					max-width: 85%;
 					margin: 3rem auto;
 				}
 

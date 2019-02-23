@@ -48,7 +48,7 @@ const header = (props) => (
 
 			@media (max-width: 600px) {
 				.header-container {
-					max-width: 80%;
+					max-width: 85%;
 				}
 
 				.title-1 {
