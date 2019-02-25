@@ -18,7 +18,7 @@ const wordSlider = (props) => {
 	}, []);
 
 	return transitions.map(({ item, props, key }) => (
-		<animated.div key={key} style={{ ...props, position: 'absolute' }}>
+		<animated.div key={key} style={{ ...props, position: 'absolute', willChange: 'transform' }}>
 			{item}
 		</animated.div>
 	));

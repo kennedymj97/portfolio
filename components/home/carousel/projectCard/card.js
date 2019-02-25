@@ -65,6 +65,7 @@ const card = props => {
           opacity: ${props.active ? "1" : "0.3"};
           margin-right: 16px;
           background: white;
+          will-change: transform;
           transform: translateX(${props.translate}px);
           transition: all 0.6s ease-out;
         }

@@ -11,9 +11,19 @@ const carousel = props => {
     process.browser ? window.innerWidth : undefined
   );
 
+  let cards;
+  let navDots = [];
+  let responsiveCarousel;
+
   useEffect(() => {
     const logWindowWidth = () => {
       setWindowWidth(window.innerWidth);
+    };
+
+    const getCardWidth = () => {
+      if (process.browser) {
+        return document.querySelector(".card").clientWidth + 16;
+      }
     };
 
     if (process.browser) {
@@ -27,12 +37,6 @@ const carousel = props => {
   const projects = props.projects;
 
   // console.log(projects)
-
-  const getCardWidth = () => {
-    if (process.browser) {
-      return document.querySelector(".card").clientWidth + 16;
-    }
-  };
 
   let arrowRightStyles =
     (windowWidth > 900 && currentIndex === projects.length - 2) ||
@@ -66,104 +70,102 @@ const carousel = props => {
     setIndexTransitionFactor(-index);
   };
 
-  let cards;
-  let navDots = [];
-  let responsiveCarousel;
+  if (windowWidth !== undefined) {
+    if (windowWidth < 900) {
+      cards = projects.map((ele, idx) => (
+        <Card
+          key={ele.id}
+          active={idx === currentIndex}
+          title={ele.title}
+          summary={ele.summary}
+          translate={translateValue}
+          name={ele.name}
+        />
+      ));
 
-  if (windowWidth > 900) {
-    cards = projects.map((ele, idx) => (
-      <Card
-        key={ele.id}
-        active={idx === currentIndex || idx === currentIndex + 1}
-        title={ele.title}
-        summary={ele.summary}
-        translate={translateValue}
-        name={ele.name}
-      />
-    ));
-
-    if (projects.length > 2) {
-      for (let i = 0; i < projects.length - 1; i++) {
-        navDots = [
-          ...navDots,
-          <NavDot
-            key={i}
-            active={i === currentIndex}
-            clicked={() => goToIndexHandler(i)}
-          />
-        ];
+      if (currentIndex === projects.legnth - 1) {
+        arrowRightVisibilty = "hidden";
+        arrowRightOpacity = "0";
       }
-    }
 
-    responsiveCarousel = (
-      <React.Fragment>
-        <div className="slider">
-          <i
-            className="arrow arrow-left fas fa-chevron-circle-left"
-            onClick={prevCardHandler}
-          />
-          {cards}
-          <i
-            className="arrow arrow-right fas fa-chevron-circle-right"
-            onClick={nextCardHandler}
-          />
-        </div>
-        <div className="navDots">{navDots}</div>
-      </React.Fragment>
-    );
-  } else {
-    cards = projects.map((ele, idx) => (
-      <Card
-        key={ele.id}
-        active={idx === currentIndex}
-        title={ele.title}
-        summary={ele.summary}
-        translate={translateValue}
-        name={ele.name}
-      />
-    ));
-
-    if (currentIndex === projects.legnth - 1) {
-      arrowRightVisibilty = "hidden";
-      arrowRightOpacity = "0";
-    }
-
-    if (projects.length > 2) {
-      for (let i = 0; i < projects.length; i++) {
-        navDots = [
-          ...navDots,
-          <NavDot
-            key={i}
-            active={i === currentIndex}
-            clicked={() => goToIndexHandler(i)}
-          />
-        ];
+      if (projects.length > 2) {
+        for (let i = 0; i < projects.length; i++) {
+          navDots = [
+            ...navDots,
+            <NavDot
+              key={i}
+              active={i === currentIndex}
+              clicked={() => goToIndexHandler(i)}
+            />
+          ];
+        }
       }
-    }
 
-    responsiveCarousel = (
-      <React.Fragment>
-        <div className="slider">{cards}</div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "15px 0"
-          }}
-        >
-          <i
-            className="arrow arrow-left fas fa-chevron-circle-left"
-            onClick={prevCardHandler}
-          />
+      responsiveCarousel = (
+        <React.Fragment>
+          <div className="slider">{cards}</div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "15px 0"
+            }}
+          >
+            <i
+              className="arrow arrow-left fas fa-chevron-circle-left"
+              onClick={prevCardHandler}
+            />
+            <div className="navDots">{navDots}</div>
+            <i
+              className="arrow arrow-right fas fa-chevron-circle-right"
+              onClick={nextCardHandler}
+            />
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      cards = projects.map((ele, idx) => (
+        <Card
+          key={ele.id}
+          active={idx === currentIndex || idx === currentIndex + 1}
+          title={ele.title}
+          summary={ele.summary}
+          translate={translateValue}
+          name={ele.name}
+        />
+      ));
+
+      if (projects.length > 2) {
+        for (let i = 0; i < projects.length - 1; i++) {
+          navDots = [
+            ...navDots,
+            <NavDot
+              key={i}
+              active={i === currentIndex}
+              clicked={() => goToIndexHandler(i)}
+            />
+          ];
+        }
+      }
+
+      responsiveCarousel = (
+        <React.Fragment>
+          <div className="slider">
+            <i
+              className="arrow arrow-left fas fa-chevron-circle-left"
+              onClick={prevCardHandler}
+            />
+            {cards}
+            <i
+              className="arrow arrow-right fas fa-chevron-circle-right"
+              onClick={nextCardHandler}
+            />
+          </div>
           <div className="navDots">{navDots}</div>
-          <i
-            className="arrow arrow-right fas fa-chevron-circle-right"
-            onClick={nextCardHandler}
-          />
-        </div>
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
+    }
   }
 
   return (
