@@ -59,7 +59,7 @@ const card = (props) => {
 					background: white;
 					will-change: transform, opacity, height;
 					transform: translateX(${props.translate}px);
-					transition: all 0.6s ease-out;
+					transition: opacity 0.6s ease-out, transform 0.6s ease-out, height 0.6s ease-out;
           position: relative;
 				}
         
