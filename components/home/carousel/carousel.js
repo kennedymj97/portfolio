@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "./projectCard/card";
 import NavDot from "./navDot/navDot";
-import { readSync } from "fs";
 
 const carousel = props => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -191,6 +190,7 @@ const carousel = props => {
           padding: 13px;
           padding-left: 12.5%;
           min-height: 426px;
+          position: relative;
         }
 
         :global(.navDots) {

@@ -12,7 +12,7 @@ const experience = (props) => {
 				'Designing, testing and implementing IoT vision systems.',
 				'Gained experience with Python (PyTorch, Fastai, Django Rest Framework, OpenCV), Javascript (React, Next.js), HTML and CSS.'
 			],
-			imgSource: '../../static/code.png'
+			imgSource: '../../static/code.jpg'
 		},
 		{
 			id: 1,
@@ -22,7 +22,7 @@ const experience = (props) => {
 				'Created and led sessions with a team of volunteers, using imaginative games to teach children important life skills.',
 				'Assisted with the training of new volunteers.'
 			],
-			imgSource: '../../static/sports_leader.png'
+			imgSource: '../../static/sports_leader.jpg'
 		},
 		{
 			id: 2,
