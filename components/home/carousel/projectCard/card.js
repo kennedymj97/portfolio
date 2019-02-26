@@ -73,7 +73,7 @@ const card = (props) => {
           border-radius: 10px;
           box-shadow: 0 3px 6px 0 rgba(60, 64, 67, 0.3), 0 3px 9px 3px rgba(60, 64, 67, 0.15);
           opacity: ${props.active ? '1' : '0'};
-          transition: opacity 500ms;
+          transition: opacity 0.6s ease-out;
         }
 
 				@media (max-width: 900px) {
