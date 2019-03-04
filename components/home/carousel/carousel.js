@@ -102,7 +102,9 @@ const carousel = props => {
 
       responsiveCarousel = (
         <React.Fragment>
-          <div className="slider">{cards}</div>
+          <div className="slider">
+            <div className="cards">{cards}</div>
+          </div>
           <div
             style={{
               display: "flex",
@@ -155,7 +157,7 @@ const carousel = props => {
               className="arrow arrow-left fas fa-chevron-circle-left"
               onClick={prevCardHandler}
             />
-            {cards}
+            <div className="cards">{cards}</div>
             <i
               className="arrow arrow-right fas fa-chevron-circle-right"
               onClick={nextCardHandler}
@@ -191,6 +193,16 @@ const carousel = props => {
           padding-left: 12.5%;
           min-height: 426px;
           position: relative;
+        }
+
+        :global(.cards) {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          min-height: 426px;
+          transform: translate3d(${translateValue}px, 0, 0);
+          transition: transform 0.6s ease-out;
         }
 
         :global(.navDots) {
