@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button/Button';
 import AnimateHeight from 'react-animate-height';
 import IconButton from '@material-ui/core/IconButton/IconButton';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const about = (props) => {
 	const [ height, setHeight ] = useState(0);
