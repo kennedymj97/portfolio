@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
+
 import Card from './projectCard/card';
 import NavDot from './navDot/navDot';
 
@@ -6,21 +8,25 @@ const carousel = (props) => {
 	const [ currentIndex, setCurrentIndex ] = useState(0);
 	const [ cardWidth, setCardWidth ] = useState(0);
 	const [ windowWidth, setWindowWidth ] = useState(process.browser ? window.innerWidth : undefined);
+	const test = useSpring({ transform: `translateX(${cardWidth * -currentIndex}px)`, config: {mass: 2, tension: 170, friction: 26}})
+	// const test = useSpring({ transform: currentIndex % 2 === 1 ? 'translateX(100px)' : 'translateX(0px)'})
+	const test2 = useSpring({ opacity: 1 })
 
 	let cards;
 	let navDots = [];
 	let responsiveCarousel;
-	// let cardWidth = 0;
 
 	useEffect(() => {
 		const logWindowWidth = () => {
 			setWindowWidth(window.innerWidth);
 		};
 
+		// set({ transform: `translateX(${cardWidth * -currentIndex}px)`})
+
 		if (process.browser) {
 			window.addEventListener('resize', logWindowWidth);
 			// cardWidth = document.querySelector('.card').clientWidth + 16;
-			setCardWidth(document.querySelector('.card').clientWidth + 16)
+			setCardWidth(document.querySelector('.card').clientWidth + 16);
 			return () => window.removeEventListener('resize', logWindowWidth);
 		}
 	});
@@ -38,7 +44,6 @@ const carousel = (props) => {
 		if ((windowWidth > 900 && currentIndex === projects.length - 2) || currentIndex === projects.length - 1) {
 			return;
 		}
-
 		setCurrentIndex(currentIndex + 1);
 	};
 
@@ -46,7 +51,6 @@ const carousel = (props) => {
 		if (currentIndex === 0) {
 			return;
 		}
-
 		setCurrentIndex(currentIndex - 1);
 	};
 
@@ -83,7 +87,9 @@ const carousel = (props) => {
 			responsiveCarousel = (
 				<React.Fragment>
 					<div className="slider">
-						<div className="cards">{cards}</div>
+						<animated.div className="cards" style={ test }>
+							{cards}
+						</animated.div>
 					</div>
 					<div
 						style={{
@@ -123,7 +129,9 @@ const carousel = (props) => {
 				<React.Fragment>
 					<div className="slider">
 						<i className="arrow arrow-left fas fa-chevron-circle-left" onClick={prevCardHandler} />
-						<div className="cards">{cards}</div>
+						<animated.div className="cards" style={ test }>
+							{cards}
+						</animated.div>
 						<i className="arrow arrow-right fas fa-chevron-circle-right" onClick={nextCardHandler} />
 					</div>
 					<div className="navDots">{navDots}</div>
@@ -132,7 +140,7 @@ const carousel = (props) => {
 		}
 	}
 
-	console.log(cardWidth)
+	console.log(cardWidth);
 
 	return (
 		<React.Fragment>
@@ -164,7 +172,7 @@ const carousel = (props) => {
 					align-items: center;
 					width: 100%;
 					min-height: 426px;
-					transform: translate3d(${cardWidth * -currentIndex}px, 0, 0);
+					// transform: translate3d(${cardWidth * -currentIndex}px, 0, 0);
 					transition: transform 0.6s ease-out;
 				}
 				:global(.navDots) {
