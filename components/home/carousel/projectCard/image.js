@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import Spinner from '../../../spinner';
+import React from 'react';
 
 const image = (props) => {
 	return (
 		<React.Fragment>
-			<div
-				style={{
-					backgroundImage: `url(${props.url})`,
-					backgroundSize: 'cover',
-					width: '100%',
-					height: '100%',
-					borderRadius: '10px 10px 0 0'
-				}}
-			/>
+			<div className='image' />
 			<style jsx>{`
-				.image2 {
-					object-fit: contain;
-					flex-shrink: 1;
+				.image {
+					background-image: url(${props.url});
+					background-size: cover;
+					width: 100%;
+					height: 100%;
+					border-radius: 10px 10px 0 0;
 				}
 			`}</style>
 		</React.Fragment>

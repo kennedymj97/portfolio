@@ -6,29 +6,40 @@ import NavDot from './navDot/navDot';
 
 const carousel = (props) => {
 	const [ currentIndex, setCurrentIndex ] = useState(0);
-	const [ cardWidth, setCardWidth ] = useState(0);
-	const [ windowWidth, setWindowWidth ] = useState(process.browser ? window.innerWidth : undefined);
-	const test = useSpring({ transform: `translate3d(${cardWidth * -currentIndex}px, 0px, 0px)`, config: {mass: 1, tension: 170, friction: 26}})
+
+	// THIS WAY OF GETTING WIDTH IS EXTREMELY SLOW AND UNPERFORMANT
+	// MAYBE USE FIXED WIDTHS FOR THE CARDS AND CHANGE THEM USING MEDIA QUERIES
+	// AS CARDS ARE NO LONGER LINKED DYNAMICALLY THE TRANSLATE VALUE DOES NOT UPDATE BASED ON WINDOW WIDTH ACCURACTELY
+	// DOES ABOVE MATTER IF USING SET CARD WIDTHS
+	// const [ cardWidth, setCardWidth ] = useState(0);
+
+	// Create a hook to use to retrieve the window dimensions?
+	// This way don't have to set up the event listener on every rerender
+
+	// const [ windowWidth, setWindowWidth ] = useState(process.browser ? window.innerWidth : undefined);
+	const test = useSpring({
+		transform: `translate3d(${391 * -currentIndex}px, 0px, 0px)`,
+		config: { mass: 1, tension: 170, friction: 26 }
+	});
 
 	let cards;
 	let navDots = [];
 	let responsiveCarousel;
+	const windowWidth = process.browser ? window.innerWidth : undefined
 
-	useEffect(() => {
-		const logWindowWidth = () => {
-			setWindowWidth(window.innerWidth);
-		};
+	// useEffect(() => {
+	// 	const logWindowWidth = () => {
+	// 		setWindowWidth(window.innerWidth);
+	// 	};
 
-		if (process.browser) {
-			window.addEventListener('resize', logWindowWidth);
-			setCardWidth(document.querySelector('.card').clientWidth + 16);
-			return () => window.removeEventListener('resize', logWindowWidth);
-		}
-	});
+	// 	if (process.browser) {
+	// 		window.addEventListener('resize', logWindowWidth);
+	// 		// setCardWidth(document.querySelector('.card').clientWidth + 16);
+	// 		return () => window.removeEventListener('resize', logWindowWidth);
+	// 	}
+	// });
 
 	const projects = props.projects;
-
-	// console.log(projects)
 
 	let arrowRightStyles =
 		(windowWidth > 900 && currentIndex === projects.length - 2) || currentIndex === projects.length - 1
@@ -62,6 +73,8 @@ const carousel = (props) => {
 					title={ele.title}
 					summary={ele.summary}
 					name={ele.name}
+					imageUrl={ele.imageUrl}
+					repoUrl={ele.repoUrl}
 				/>
 			));
 
@@ -82,7 +95,7 @@ const carousel = (props) => {
 			responsiveCarousel = (
 				<React.Fragment>
 					<div className="slider">
-						<animated.div className="cards" style={ test }>
+						<animated.div className="cards" style={test}>
 							{cards}
 						</animated.div>
 					</div>
@@ -108,6 +121,8 @@ const carousel = (props) => {
 					title={ele.title}
 					summary={ele.summary}
 					name={ele.name}
+					imageUrl={ele.imageUrl}
+					repoUrl={ele.repoUrl}
 				/>
 			));
 
@@ -124,7 +139,7 @@ const carousel = (props) => {
 				<React.Fragment>
 					<div className="slider">
 						<i className="arrow arrow-left fas fa-chevron-circle-left" onClick={prevCardHandler} />
-						<animated.div className="cards" style={ test }>
+						<animated.div className="cards" style={test}>
 							{cards}
 						</animated.div>
 						<i className="arrow arrow-right fas fa-chevron-circle-right" onClick={nextCardHandler} />
@@ -135,7 +150,8 @@ const carousel = (props) => {
 		}
 	}
 
-	console.log(cardWidth);
+	console.log(windowWidth);
+	console.log(currentIndex);
 
 	return (
 		<React.Fragment>

@@ -1,42 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Image from './image';
 import About from './info';
-import fetch from 'isomorphic-unfetch';
-import Spinner from '../../../spinner';
 
 const card = (props) => {
-	const [ projectInfo, setProjectInfo ] = useState(null);
-
-	const fetchData = async () => {
-		try {
-			const res = await fetch(
-				`https://raw.githubusercontent.com/kennedymj97/${props.name}/master/project-info.json`
-			);
-			const data = await res.json();
-			setProjectInfo(data.data);
-		} catch (err) {
-			console.log('Error: failed to retrieve project info', err);
-			setProjectInfo('ERROR');
-		}
-	};
-
-	useEffect(() => {
-		fetchData();
-	}, []);
-
-	let information = <Spinner />;
-	if (projectInfo) {
-		information = (
-			<React.Fragment>
-				<Image url={projectInfo.imageUrl} />
-				<About title={projectInfo.title} info={projectInfo.summary} repo={projectInfo.repoUrl} />
-			</React.Fragment>
-		);
-	}
-
 	return (
 		<React.Fragment>
-			<div className="card">{projectInfo === 'ERROR' ? 'Error loading project information' : information}</div>
+			<div className="card">
+				<Image url={props.imageUrl} />
+				<About title={props.title} info={props.summary} repo={props.repoUrl} />
+			</div>
 			<style jsx>{`
 				.card {
 					height: 400px;
@@ -56,6 +28,7 @@ const card = (props) => {
 					margin-right: 16px;
 					background: white;
 					transition: opacity 0.6s;
+					will-change: opacity;
 					position: relative;
 				}
 
@@ -69,7 +42,8 @@ const card = (props) => {
 					border-radius: 10px;
 					box-shadow: 0 3px 6px 0 rgba(60, 64, 67, 0.3), 0 3px 9px 3px rgba(60, 64, 67, 0.15);
 					opacity: ${props.active ? '1' : '0'};
-					transition: opacity 1.5s;
+					will-change: opacity;
+					transition: opacity 0.6s;
 				}
 
 				@media (max-width: 900px) {

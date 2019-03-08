@@ -5,6 +5,8 @@ import IconButton from '@material-ui/core/IconButton/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const about = (props) => {
+	// Change this so react spring is used to animate the height
+	// Extract the state logic to higher up the render tree????
 	const [ height, setHeight ] = useState(0);
 
 	const expansionHandler = () => {
