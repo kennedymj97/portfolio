@@ -8,9 +8,7 @@ const carousel = (props) => {
 	const [ currentIndex, setCurrentIndex ] = useState(0);
 	const [ cardWidth, setCardWidth ] = useState(0);
 	const [ windowWidth, setWindowWidth ] = useState(process.browser ? window.innerWidth : undefined);
-	const test = useSpring({ transform: `translateX(${cardWidth * -currentIndex}px)`, config: {mass: 2, tension: 170, friction: 26}})
-	// const test = useSpring({ transform: currentIndex % 2 === 1 ? 'translateX(100px)' : 'translateX(0px)'})
-	const test2 = useSpring({ opacity: 1 })
+	const test = useSpring({ transform: `translate3d(${cardWidth * -currentIndex}px, 0px, 0px)`, config: {mass: 1, tension: 170, friction: 26}})
 
 	let cards;
 	let navDots = [];
@@ -21,11 +19,8 @@ const carousel = (props) => {
 			setWindowWidth(window.innerWidth);
 		};
 
-		// set({ transform: `translateX(${cardWidth * -currentIndex}px)`})
-
 		if (process.browser) {
 			window.addEventListener('resize', logWindowWidth);
-			// cardWidth = document.querySelector('.card').clientWidth + 16;
 			setCardWidth(document.querySelector('.card').clientWidth + 16);
 			return () => window.removeEventListener('resize', logWindowWidth);
 		}
@@ -172,8 +167,7 @@ const carousel = (props) => {
 					align-items: center;
 					width: 100%;
 					min-height: 426px;
-					// transform: translate3d(${cardWidth * -currentIndex}px, 0, 0);
-					transition: transform 0.6s ease-out;
+					will-change: transform;
 				}
 				:global(.navDots) {
 					display: flex;
