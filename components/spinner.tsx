@@ -1,6 +1,6 @@
 import React from 'react';
 
-const spinner = (props) => (
+const spinner = () => (
 	<React.Fragment>
 		<div className="loader">Loading...</div>
 		<style jsx>{`

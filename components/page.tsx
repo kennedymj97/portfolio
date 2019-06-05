@@ -1,7 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
 
-const page = (props) => (
+type Props = {
+	title?: string,
+	description?: string,
+	children: JSX.Element[]
+}
+
+const page = (props: Props) => (
 	<React.Fragment>
 		<Head>
 			<meta charSet="UTF-8" />

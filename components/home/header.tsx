@@ -1,7 +1,7 @@
 import React from 'react';
-import WordSlider from './wordSlider';
+import WordSlider from './word-slider';
 
-const header = (props) => (
+const header = () => (
 	<React.Fragment>
 		<header className="header" id='header'>
 			<div className="header-container">
