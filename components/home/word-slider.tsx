@@ -1,42 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import { animated, useTransition } from 'react-spring';
+import React from 'react';
 
-/*
+const words = [ 'Artificial Intelligence', 'Web Development', 'Always Learning' ];
 
-REPLACE REACT SRPING WITH A CSS KEYFRAMES ANIMATION SEE https://github.com/zeit/next-site/blob/master/www/components/home/campaign.js
+export default () => {
+	const animationDuration = 1.8;
+	const animationLength = animationDuration * words.length;
+	const endOfAnimation = 100 / words.length;
+	const animationOverlap = 0.1;
 
-*/
-
-type Props = {
-	duration: number,
-	children: JSX.Element[]
-}
-
-const wordSlider = (props: Props) => {
-	const [ index, setIndex ] = useState(0);
-	// const [ children, setChildren ] = useState(React.Children.toArray(props.children));
-	
-	const children = React.Children.toArray(props.children)
-	
-	const transitions = useTransition(children[index], (item) => item.key, {
-		from: { opacity: 0, transform: 'translate3d(0, -50%, 0)' },
-		enter: { opacity: 1, transform: 'translate3d(0, 0%, 0)' },
-		leave: { opacity: 0, transform: 'translate3d(0, 60%, 0)' }
-	});
-	let animation: any;
-
-
-	useEffect(() => {
-		animation = setInterval(() => setIndex((index) => (index + 1) % children.length), props.duration || 1500);
-
-		return () => clearInterval(animation);
-	}, []);
-
-	return transitions.map(({ item, props, key }) => (
-		<animated.div key={key} style={{ ...props, position: 'absolute', willChange: 'transform' }}>
-			{item}
-		</animated.div>
-	));
+	return (
+		<React.Fragment>
+			<div className="slider-container">
+				<div className="words">
+					{words.map((word, index) => (
+						<span
+							key={word}
+							style={{
+								animationDelay: index === 0 ? '1ms' : `${animationDuration * index}s`
+							}}
+						>
+							{word}
+						</span>
+					))}
+				</div>
+			</div>
+			<style jsx>{`
+				.slider-container {
+					margin: auto;
+					margin-top: -1rem;
+					margin-bottom: -1rem;
+					line-height: 1.4em;
+					white-space: nowrap;
+					position: relative;
+				}
+				.words {
+					width: 100%;
+					height: 3.4em;
+					display: block;
+					margin-top: 0rem;
+					margin-bottom: 2rem;
+				}
+				.words span {
+					position: absolute;
+					opacity: 0;
+					overflow: hidden;
+					animation: slide-word ${animationLength}s linear infinite 0s;
+					animation-timing-function: cubic-bezier(0.19, 0.82, 0.84, 1.06);
+				}
+				@keyframes slide-word {
+					0% {
+						opacity: 0;
+						transform: translate3d(-50%, 25%, 0px);
+						visibility: visible;
+					}
+					${1 - 1 * animationOverlap}% {
+						opacity: 1;
+						transform: translate3d(-50%, 75%, 0px);
+					}
+					${endOfAnimation}% {
+						opacity: 1;
+						transform: translate3d(-50%, 75%, 0px);
+						visibility: visible;
+					}
+					${endOfAnimation + endOfAnimation * animationOverlap}% {
+						opacity: 0;
+						transform: translate3d(-50%, 135%, 0px);
+						visibility: hidden;
+					}
+					100% {
+						opacity: 0;
+						visibility: visible;
+					}
+				}
+			`}</style>
+		</React.Fragment>
+	);
 };
-
-export default wordSlider;

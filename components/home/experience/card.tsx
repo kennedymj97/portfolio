@@ -1,6 +1,13 @@
 import React from 'react';
 
-const experienceCard = (props) => (
+type Props = {
+	role: string,
+	placeDate: string,
+	imgSource: string,
+	experiences: string[]
+}
+
+export default (props: Props) => (
 	<React.Fragment>
 		<div className="experience-card">
 			<div className="experience-details">
@@ -16,8 +23,7 @@ const experienceCard = (props) => (
 				display: flex;
 				justify-content: space-between;
 				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
-				// box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
-				margin-bottom: 30px;
+				margin-bottom: 2rem;
 				border-radius: 10px;
 				overflow: hidden;
 			}
@@ -37,9 +43,6 @@ const experienceCard = (props) => (
 
 			.place-date {
 				margin: 0;
-			}
-
-			.experiences {
 			}
 
 			.experience-image {
@@ -71,5 +74,3 @@ const experienceCard = (props) => (
 		`}</style>
 	</React.Fragment>
 );
-
-export default experienceCard;

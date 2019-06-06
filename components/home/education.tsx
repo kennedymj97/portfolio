@@ -1,6 +1,6 @@
 import React from 'react';
 
-const education = (props) => (
+export default () => (
 	<React.Fragment>
 		<section className="education">
 			<h2>Education</h2>
@@ -9,7 +9,6 @@ const education = (props) => (
 					<h3>BEng Mechanical Engineering Including an Industrial Year</h3>
 					<h4>University of Nottingham | 2015 - 2019</h4>
 					<p>First Class Honours</p>
-					<img src="../static/icons8-robot-96.png" className="education-info-icon" />
 				</div>
 				<div className="education-info">
 					<h3>A Levels</h3>
@@ -17,17 +16,14 @@ const education = (props) => (
 						<div className="education-info-alevel">
 							<h4>Maths</h4>
 							<p>A*</p>
-							<img src="../static/icons8-math-96.png" className="education-info-icon" />
 						</div>
 						<div className="education-info-alevel">
 							<h4>Further Maths</h4>
 							<p>A</p>
-							<img src="../static/icons8-formula-fx-96.png" className="education-info-icon" />
 						</div>
 						<div className="education-info-alevel">
 							<h4>Physics</h4>
 							<p>A*</p>
-							<img src="../static/icons8-physics-96.png" className="education-info-icon" />
 						</div>
 					</div>
 				</div>
@@ -56,7 +52,7 @@ const education = (props) => (
 				flex-direction: column;
 				align-items: center;
 				text-align: center;
-				margin-bottom: 30px;
+				margin-bottom: 1rem;
 			}
 
 			@media(max-width: 600px) {
@@ -76,15 +72,9 @@ const education = (props) => (
 				display: flex;
 			}
 
-			.education-info-icon {
-				width: 56px;
-			}
-
 			.education-info-alevel {
 				padding: 0 20px;
 			}
 		`}</style>
 	</React.Fragment>
 );
-
-export default education;

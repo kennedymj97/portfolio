@@ -1,6 +1,6 @@
 import React from 'react';
 
-const about = (props) => (
+export default () => (
 	<React.Fragment>
 		<section className="about">
 			{/* <img className='about-img' src="../static/snowden1.jpg" /> */}
@@ -40,5 +40,3 @@ const about = (props) => (
 		`}</style>
 	</React.Fragment>
 );
-
-export default about;

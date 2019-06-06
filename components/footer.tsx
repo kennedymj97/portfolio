@@ -1,6 +1,6 @@
 import React from 'react';
 
-const footer = (props) => (
+const footer = () => (
 	<React.Fragment>
 		<footer className="footer">
 			<div className="footer-quote">
