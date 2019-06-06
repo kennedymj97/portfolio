@@ -1,63 +1,35 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button/Button';
+
 import Card from './card';
+import MinimalButton from '../../UI/button-minimal';
 
 const projects = [
 	{
 		id: 1,
-		title: 'Portfolio Website',
-		summary: 'Website used to give information about me and show off projects I have been working on.',
-		imageUrl: '../../../../static/portfolioLogos.jpg',
-		readmeUrl: 'https://raw.githubusercontent.com/kennedymj97/portfolio/master/README.md',
-		repoUrl: 'https://github.com/kennedymj97/portfolio'
+		title: 'Todo App (Backend)',
+		summary: 'Http api built using golang for the todo app. Deployed on an AWS EC2 instance.',
+		imageUrl: '../../../../static/golang.jpg',
+		repoUrl: 'https://github.com/kennedymj97/todo-api'
 	},
 	{
 		id: 2,
-		title: 'Bookshelf',
-		summary:
-			'I read a lot so am creating a web app to store the books I have read and some of my notes and thoughts about them.',
-		imageUrl: '../../../../static/books.jpg',
-		readmeUrl: 'https://raw.githubusercontent.com/kennedymj97/bookshelf/master/README.md',
-		repoUrl: 'https://github.com/kennedymj97/bookshelf'
+		title: 'Todo App (Frontend)',
+		summary: 'React/Typescript todo app frontend. Interacts with the golang todo api. Inspired by TodoMVC.',
+		imageUrl: '../../../../static/todo.jpg',
+		repoUrl: 'https://github.com/kennedymj97/todo-frontend'
 	},
 	{
 		id: 3,
-		title: 'Detecting Smiles',
-		summary: 'Project that used deep learning to predict if someone is smiling in real time',
-		imageUrl: '../../../../static/smiling-faces.jpg',
-		readmeUrl: 'https://raw.githubusercontent.com/kennedymj97/detecting-smiles/master/README.md',
-		repoUrl: 'https://github.com/kennedymj97/detecting-smiles'
+		title: 'Portfolio Website',
+		summary: 'Website used to give information about me and show off projects I have been working on.',
+		imageUrl: '../../../../static/portfolioLogos.jpg',
+		repoUrl: 'https://github.com/kennedymj97/portfolio'
 	},
 	{
 		id: 4,
 		title: 'Detecting Smiles',
 		summary: 'Project that used deep learning to predict if someone is smiling in real time',
-		imageUrl: '../../../../static/smiling-faces.jpg',
-		readmeUrl: 'https://raw.githubusercontent.com/kennedymj97/detecting-smiles/master/README.md',
-		repoUrl: 'https://github.com/kennedymj97/detecting-smiles'
-	},
-	{
-		id: 5,
-		title: 'Detecting Smiles',
-		summary: 'Project that used deep learning to predict if someone is smiling in real time',
-		imageUrl: '../../../../static/smiling-faces.jpg',
-		readmeUrl: 'https://raw.githubusercontent.com/kennedymj97/detecting-smiles/master/README.md',
-		repoUrl: 'https://github.com/kennedymj97/detecting-smiles'
-	},
-	{
-		id: 6,
-		title: 'Detecting Smiles',
-		summary: 'Project that used deep learning to predict if someone is smiling in real time',
-		imageUrl: '../../../../static/smiling-faces.jpg',
-		readmeUrl: 'https://raw.githubusercontent.com/kennedymj97/detecting-smiles/master/README.md',
-		repoUrl: 'https://github.com/kennedymj97/detecting-smiles'
-	},
-	{
-		id: 7,
-		title: 'Detecting Smiles',
-		summary: 'Project that used deep learning to predict if someone is smiling in real time',
-		imageUrl: '../../../../static/smiling-faces.jpg',
-		readmeUrl: 'https://raw.githubusercontent.com/kennedymj97/detecting-smiles/master/README.md',
+		imageUrl: '../../../../static/happy.jpg',
 		repoUrl: 'https://github.com/kennedymj97/detecting-smiles'
 	}
 ];
@@ -77,17 +49,22 @@ export default () => {
 				<div className="projects-container">
 					<h2>Projects</h2>
 					<div className="cards-container">{slice}</div>
-					<Button
-						onClick={() => (items === cards.length ? setItems(3) : setItems(cards.length))}
-						style={{
-							color: 'white',
-							background: '#0076ff',
-							boxShadow: '0 4px 14px 0 rgba(0,118,255,0.39)',
-							zIndex: 10
-						}}
+					<MinimalButton
+						clicked={() => (items === cards.length ? setItems(3) : setItems(cards.length))}
+						newTab={false}
 					>
-						{items === cards.length ? 'Show less projects' : 'Show more projects'}
-					</Button>
+						{items === cards.length ? (
+							<React.Fragment>
+								<span className="show-button-text">Show less projects</span>
+								<i className="fas fa-angle-up" />
+							</React.Fragment>
+						) : (
+							<React.Fragment>
+								<span className="show-button-text">Show more projects</span>
+								<i className="fas fa-angle-down" />
+							</React.Fragment>
+						)}
+					</MinimalButton>
 				</div>
 			</section>
 			<style jsx>{`
@@ -116,6 +93,10 @@ export default () => {
 					grid-template-columns: repeat(3, 1fr);
 					grid-gap: 3vh;
 					margin-bottom: 2rem;
+				}
+
+				.show-button-text {
+					padding-right: 10px;
 				}
 			`}</style>
 		</React.Fragment>

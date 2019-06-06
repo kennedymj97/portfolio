@@ -59,7 +59,7 @@ const page = (props: Props) => (
 			html,
 			body {
 				background-color: #fff;
-				color: #111;
+				color: rgba(0,0,0,0.8);
 			}
 		`}</style>
 	</React.Fragment>

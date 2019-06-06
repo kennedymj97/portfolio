@@ -25,6 +25,7 @@ export default () => (
 			.about-quote {
 				font-size: 1.5rem;
 				text-align: center;
+				color: rgba(0,0,0,0.7)
 			}
 
 			@media (max-width: 600px) {

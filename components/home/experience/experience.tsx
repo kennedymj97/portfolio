@@ -1,5 +1,7 @@
 import React from 'react';
+
 import ExperienceCard from './card';
+import MinimalButton from '../../UI/button-minimal'
 
 const experienceInfo = [
 	{
@@ -53,10 +55,10 @@ export default () => {
 				<div className="experience-container">
 					<h2 style={{ marginBottom: '2rem' }}>Experience</h2>
 					<div className="experience-cards">{experienceCards}</div>
-					<a href="#header" className="back-to-top">
+					<MinimalButton clicked={() => window.scrollTo(0, 0)} newTab={false}>
 						<span className="back-to-top-text">Back to top</span>
 						<i className="fas fa-angle-up" />
-					</a>
+					</MinimalButton>
 				</div>
 			</section>
 			<style jsx>{`
@@ -83,21 +85,6 @@ export default () => {
 					.experience-container {
 						max-width: 85%;
 					}
-				}
-
-				.back-to-top {
-					text-decoration: none;
-					color: #0076ff;
-					border-radius: 7px;
-					transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-					padding: 0.25rem 0.5rem;
-					margin: -0.25rem -0.5rem;
-					cursor: pointer;
-					margin-top: 30px;
-				}
-
-				.back-to-top:hover {
-					background: rgba(0, 118, 255, 0.1);
 				}
 
 				.back-to-top-text {
