@@ -9,28 +9,32 @@ const projects = [
 		title: 'Todo App (Backend)',
 		summary: 'Http api built using golang for the todo app. Deployed on an AWS EC2 instance.',
 		imageUrl: '../../../../static/golang.jpg',
-		repoUrl: 'https://github.com/kennedymj97/todo-api'
+		repoUrl: 'https://github.com/kennedymj97/todo-api',
+		appUrl: 'http://localhost:3000/todo'
 	},
 	{
 		id: 2,
 		title: 'Todo App (Frontend)',
 		summary: 'React/Typescript todo app frontend. Interacts with the golang todo api. Inspired by TodoMVC.',
 		imageUrl: '../../../../static/todo.jpg',
-		repoUrl: 'https://github.com/kennedymj97/todo-frontend'
+		repoUrl: 'https://github.com/kennedymj97/todo-frontend',
+		appUrl: 'http://localhost:3000/todo'
 	},
 	{
 		id: 3,
 		title: 'Portfolio Website',
 		summary: 'Website used to give information about me and show off projects I have been working on.',
 		imageUrl: '../../../../static/portfolioLogos.jpg',
-		repoUrl: 'https://github.com/kennedymj97/portfolio'
+		repoUrl: 'https://github.com/kennedymj97/portfolio',
+		appUrl: undefined
 	},
 	{
 		id: 4,
 		title: 'Detecting Smiles',
 		summary: 'Project that used deep learning to predict if someone is smiling in real time',
 		imageUrl: '../../../../static/happy.jpg',
-		repoUrl: 'https://github.com/kennedymj97/detecting-smiles'
+		repoUrl: 'https://github.com/kennedymj97/detecting-smiles',
+		appUrl: undefined
 	}
 ];
 
@@ -38,7 +42,14 @@ export default () => {
 	const [ items, setItems ] = useState<number>(3);
 
 	const cards = projects.map((ele) => (
-		<Card key={ele.id} title={ele.title} info={ele.summary} imageSrc={ele.imageUrl} github={ele.repoUrl} />
+		<Card
+			key={ele.id}
+			title={ele.title}
+			info={ele.summary}
+			imageSrc={ele.imageUrl}
+			github={ele.repoUrl}
+			url={ele.appUrl}
+		/>
 	));
 
 	const slice = cards.slice(0, items);

@@ -7,20 +7,20 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
-		"@material-ui/core": "^3.9.2",
-		"@material-ui/icons": "^3.0.2",
+		"axios": "^0.19.0",
 		"isomorphic-unfetch": "^3.0.0",
 		"next": "^8.1.1-canary.44",
 		"react": "^16.8.6",
-		"react-animate-height": "^2.0.7",
 		"react-dom": "^16.8.6",
-		"react-spring": "^8.0.7"
+		"uuid": "^3.3.2"
 	},
 	"devDependencies": {
+		"@types/axios": "^0.14.0",
 		"@types/node": "^12.0.4",
 		"@types/react": "^16.8.19",
 		"@types/react-dom": "^16.8.4",
 		"@types/styled-jsx": "^2.2.8",
+		"@types/uuid": "^3.4.4",
 		"typescript": "^3.5.1"
 	}
 }

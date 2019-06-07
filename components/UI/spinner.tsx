@@ -10,7 +10,7 @@ const spinner = () => (
 				border-radius: 50%;
 			}
 			.loader {
-				color: #0dc5c1;
+				color: rgba(175, 47, 47, 0.15);
 				font-size: 11px;
 				text-indent: -99999em;
 				margin: 55px auto;
@@ -30,7 +30,7 @@ const spinner = () => (
 			.loader:before {
 				width: 5.2em;
 				height: 10.2em;
-				background: white;
+				background: #fff;
 				border-radius: 10.2em 0 0 10.2em;
 				top: -0.1em;
 				left: -0.1em;
@@ -42,7 +42,7 @@ const spinner = () => (
 			.loader:after {
 				width: 5.2em;
 				height: 10.2em;
-				background: white;
+				background: #fff;
 				border-radius: 0 10.2em 10.2em 0;
 				top: -0.1em;
 				left: 5.1em;
