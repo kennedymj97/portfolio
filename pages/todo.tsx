@@ -22,7 +22,7 @@ TODOS:
 
 */
 
-const BASE_URL: string = 'http://ec2-34-250-151-5.eu-west-1.compute.amazonaws.com:8080';
+const BASE_URL: string = 'http://ec2-34-244-114-95.eu-west-1.compute.amazonaws.com:8080';
 
 export default () => {
 	// variable for the task input field
