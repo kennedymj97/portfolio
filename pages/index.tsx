@@ -15,7 +15,7 @@ const projects: Project[] = [
 		summary: 'Http api built using golang for the todo app. Deployed on an AWS EC2 instance.',
 		imageUrl: '../../../../static/golang.jpg',
 		repoUrl: 'https://github.com/kennedymj97/todo-api',
-		appUrl: 'http://localhost:3000/todo'
+		appUrl: 'https://www.mattkennedy.io/todo'
 	},
 	{
 		id: 2,
@@ -23,7 +23,7 @@ const projects: Project[] = [
 		summary: 'React/Typescript todo app frontend. Interacts with the golang todo api. Inspired by TodoMVC.',
 		imageUrl: '../../../../static/todo.jpg',
 		repoUrl: 'https://github.com/kennedymj97/todo-frontend',
-		appUrl: 'http://localhost:3000/todo'
+		appUrl: 'https://www.mattkennedy.io/todo'
 	},
 	{
 		id: 3,
