@@ -4,8 +4,9 @@ export default () => (
 	<React.Fragment>
 		<section className="about">
 			{/* <img className='about-img' src="../static/snowden1.jpg" /> */}
-			<blockquote className='about-quote'>
-				I want to work at the forefront of technology; building products, solving complex problems and learning every day.
+			<blockquote className="about-quote">
+				I want to work at the forefront of technology; building products, solving complex problems and learning
+				every day.
 			</blockquote>
 		</section>
 		<style jsx>{`
@@ -25,7 +26,7 @@ export default () => (
 			.about-quote {
 				font-size: 1.5rem;
 				text-align: center;
-				color: rgba(0,0,0,0.7)
+				color: rgba(0, 0, 0, 0.7);
 			}
 
 			@media (max-width: 600px) {

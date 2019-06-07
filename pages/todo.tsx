@@ -2,11 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import Head from 'next/head';
 
-import TodoItem from '../components/todo/tasks/task';
+import Nav from '../components/todo/nav';
+import TodoInput from '../components/todo/input';
+import Tasks from '../components/todo/tasks/tasks';
 import TodoFooter from '../components/todo/tasks/footer/footer';
 import LoginModal from '../components/todo/modal';
-import Button from '../components/UI/button';
+import Footer from '../components/todo/footer';
 import NotAuthed from '../components/errors/auth';
+import ErrorHeader from '../components/errors/server';
 import Spinner from '../components/UI/spinner';
 import uuidv1 from 'uuid/v1';
 
@@ -277,97 +280,9 @@ export default () => {
 		}
 	};
 
-	const shownTodos = todos.filter((todo) => {
-		switch (nowShowing) {
-			case 'active':
-				return !todo.completed;
-			case 'completed':
-				return todo.completed;
-			default:
-				return true;
-		}
-	});
-
-	const todoItems = shownTodos.map((todo) => (
-		<TodoItem
-			key={todo.id}
-			todo={todo}
-			onToggle={() => toggle(todo)}
-			onDestroy={() => destroy(todo)}
-			onEdit={() => setEditing(todo.id)}
-			editing={editing === todo.id}
-			onSave={(text) => save(todo, text)}
-			onCancel={() => setEditing('')}
-		/>
-	));
-
 	const activeTodoCount = todos.reduce(function(accum, todo) {
 		return todo.completed ? accum : accum + 1;
 	}, 0);
-
-	let main;
-	if (todos.length) {
-		main = (
-			<React.Fragment>
-				<div className="TodoBody">
-					<input
-						className="ToggleAll"
-						id="toggle-all"
-						type="checkbox"
-						onChange={(e) => toggleAll(e)}
-						checked={activeTodoCount === 0}
-					/>
-					<label htmlFor="toggle-all">Mark all as complete</label>
-					<ul className="TodoList">{todoItems}</ul>
-				</div>
-				<style jsx>{`
-					.TodoBody {
-						position: relative;
-						z-index: 2;
-						border-top: 1px solid #e6e6e6;
-					}
-
-					.ToggleAll {
-						width: 1px;
-						height: 1px;
-						border: none; /* Mobile Safari */
-						opacity: 0;
-						position: absolute;
-						right: 100%;
-						bottom: 100%;
-					}
-
-					.ToggleAll + label {
-						width: 60px;
-						height: 34px;
-						font-size: 0;
-						position: absolute;
-						top: -52px;
-						left: -13px;
-						-webkit-transform: rotate(90deg);
-						transform: rotate(90deg);
-					}
-
-					.ToggleAll + label:before {
-						content: '❯';
-						font-size: 22px;
-						color: #e6e6e6;
-						padding: 10px 27px 10px 27px;
-					}
-
-					.ToggleAll:checked + label:before {
-						color: #737373;
-					}
-
-					.TodoList {
-						margin: 0;
-						padding: 0;
-						list-style: none;
-					}
-				`}</style>
-			</React.Fragment>
-		);
-	}
 
 	const completedCount = todos.length - activeTodoCount;
 
@@ -389,7 +304,7 @@ export default () => {
 			<Head>
 				<meta charSet="UTF-8" />
 				<title>Todos</title>
-				<meta name="description" content={"React/Typescript with Golang api todo app"} />
+				<meta name="description" content={'React/Typescript with Golang api todo app'} />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/static/icon.jpg" />
 				<link
@@ -399,90 +314,49 @@ export default () => {
 					crossOrigin="anonymous"
 				/>
 			</Head>
-			{error ? (
-				<header className="ErrorHeader">
-					Error: failed to connect to the server. Recent changes made may be lost.
-				</header>
-			) : null}
-			<nav className="Nav" style={{ marginTop: error ? '6vh' : '0' }}>
-				{authorized ? (
-					<Button clicked={() => logoutUser()}>Logout</Button>
-				) : (
-					<Button clicked={() => setLogin(true)}>Login</Button>
-				)}
-			</nav>
+			{error ? <ErrorHeader /> : null}
+			<Nav error={error} auth={authorized} logout={() => logoutUser()} setLogin={() => setLogin(true)} />
 			<div className="TodoApp">
 				<h1>todos</h1>
-				<form onSubmit={(e) => handleNewTodoSubmit(e)}>
-					<input
-						className="TodoInput"
-						value={task}
-						placeholder="What needs to be done?"
-						onChange={(e) => setTask(e.target.value)}
-						autoFocus={true}
+				<TodoInput
+					submitted={(e: React.FormEvent<HTMLFormElement>) => handleNewTodoSubmit(e)}
+					value={task}
+					edit={(e: React.ChangeEvent<HTMLInputElement>) => setTask(e.target.value)}
+				/>
+				{loading ? (
+					<Spinner />
+				) : (
+					<Tasks
+						todos={todos}
+						activeTodoCount={activeTodoCount}
+						showing={nowShowing}
+						toggleAll={(e) => toggleAll(e)}
+						toggle={toggle}
+						destroy={destroy}
+						edit={setEditing}
+						editing={editing}
+						save={save}
 					/>
-				</form>
-				{loading ? <Spinner /> : main}
+				)}
 				{footer}
-				<LoginModal active={login} backgroundClicked={() => setLogin(false)}>
-					{isLogin ? (
-						<form className="LoginForm" onSubmit={(e) => loginUserSubmit(e)}>
-							<h2>login</h2>
-							<label>Email</label>
-							<input
-								placeholder={'Enter email here'}
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-							/>
-							<label>Password</label>
-							<input
-								type="password"
-								placeholder={'Enter password here'}
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-							/>
-							{loggingIn ? <Spinner /> : <Button>Login</Button>}
-							<span style={{ marginTop: '1rem' }} onClick={() => setIsLogin(false)}>
-								Don't have an account? Signup.
-							</span>
-						</form>
-					) : (
-						<form className="LoginForm" onSubmit={(e) => signupUser(e)}>
-							<h2>signup</h2>
-							<label>Email</label>
-							<input
-								placeholder={'Enter email here'}
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-							/>
-							<label>Password</label>
-							<input
-								type="password"
-								placeholder={'Enter password here'}
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-							/>
-							<label>Confirm Password</label>
-							<input
-								type="password"
-								placeholder={'Enter password here'}
-								value={confirmPassword}
-								onChange={(e) => setConfirmPassword(e.target.value)}
-							/>
-							{loggingIn ? <Spinner /> : <Button>Signup</Button>}
-							<span onClick={() => setIsLogin(true)}>Already have an account? Login.</span>
-						</form>
-					)}
-				</LoginModal>
+				<LoginModal
+					active={login}
+					backgroundClicked={() => setLogin(false)}
+					isLogin={isLogin}
+					setIsLogin={setIsLogin}
+					loggingIn={loggingIn}
+					login={(e) => loginUserSubmit(e)}
+					signup={(e) => signupUser(e)}
+					email={email}
+					password={password}
+					confirmPassword={confirmPassword}
+					setEmail={setEmail}
+					setPassword={setPassword}
+					setConfirmPassword={setConfirmPassword}
+				/>
 			</div>
 			{authorized ? null : <NotAuthed>Login to save your tasks.</NotAuthed>}
-			<footer className="Footer">
-				<p>Double-click to edit a todo</p>
-				<p>Created by Matthew Kennedy</p>
-				<p>
-					Inspired by <a href="http://todomvc.com">TodoMVC</a>
-				</p>
-			</footer>
+			<Footer />
 			<style jsx>{`
 				.TodoApp {
 					background: #fff;
@@ -520,81 +394,6 @@ export default () => {
 					-webkit-text-rendering: optimizeLegibility;
 					-moz-text-rendering: optimizeLegibility;
 					text-rendering: optimizeLegibility;
-				}
-
-				.TodoInput {
-					position: relative;
-					margin: 0;
-					width: 100%;
-					font-size: 24px;
-					font-family: inherit;
-					font-weight: inherit;
-					line-height: 1.4em;
-					color: inherit;
-					padding: 6px;
-					border: 1px solid #999;
-					box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-					box-sizing: border-box;
-					padding: 16px 16px 16px 60px;
-					border: none;
-					background: rgba(0, 0, 0, 0.003);
-					box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
-					-webkit-font-smoothing: antialiased;
-					-moz-osx-font-smoothing: grayscale;
-				}
-
-				.Nav {
-					display: flex;
-					width: 100%;
-					align-items: center;
-					justify-content: center;
-					padding: 10px;
-					box-sizing: border-box;
-				}
-
-				.Footer {
-					margin: 65px auto 0;
-					color: #bfbfbf;
-					font-size: 10px;
-					text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-					text-align: center;
-				}
-
-				.Footer p {
-					line-height: 1;
-				}
-
-				.Footer a {
-					color: inherit;
-					text-decoration: none;
-					font-weight: 400;
-				}
-
-				.Footer a:hover {
-					text-decoration: underline;
-				}
-
-				.ErrorHeader {
-					width: 100vw;
-					height: 5vh;
-					background: red;
-					color: white;
-					font-size: 16px;
-					font-weight: 400;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					position: fixed;
-					top: 0;
-					left: 0;
-				}
-
-				.LoginForm {
-					display: flex;
-					flex-direction: column;
-					width: 100%;
-					align-items: center;
-					justify-content: center;
 				}
 			`}</style>
 			<style jsx global>{`

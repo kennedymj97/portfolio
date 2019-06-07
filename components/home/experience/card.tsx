@@ -1,11 +1,11 @@
 import React from 'react';
 
 type Props = {
-	role: string,
-	placeDate: string,
-	imgSource: string,
-	experiences: string[]
-}
+	role: string;
+	placeDate: string;
+	imgSource: string;
+	experiences: string[];
+};
 
 export default (props: Props) => (
 	<React.Fragment>
@@ -67,7 +67,8 @@ export default (props: Props) => (
 					height: 200px;
 				}
 
-				.role, .place-date {
+				.role,
+				.place-date {
 					text-align: center;
 				}
 			}

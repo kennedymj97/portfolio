@@ -1,18 +1,82 @@
 import React from 'react';
 
+import Button from '../UI/button';
+import Spinner from '../UI/spinner';
+
 type Props = {
 	active: boolean;
 	backgroundClicked: () => void;
+	isLogin: boolean;
+	setIsLogin: (val: boolean) => void;
+	loggingIn: boolean;
+	login: (e: React.FormEvent<HTMLFormElement>) => void;
+	signup: (e: React.FormEvent<HTMLFormElement>) => void;
+	email: string;
+	password: string;
+	confirmPassword: string;
+	setEmail: (val: string) => void;
+	setPassword: (val: string) => void;
+	setConfirmPassword: (val: string) => void;
 	children?: JSX.Element[] | JSX.Element;
 };
 
-export default ({ active, backgroundClicked, children }: Props) => {
+export default (props: Props) => {
 	return (
 		<React.Fragment>
-			<div className="ModalContainer" style={{ visibility: active ? 'visible' : 'hidden' }}>
-				<div className="ModalBackground" onClick={backgroundClicked} />
-				<div className="LoginContainer" style={{ transform: active ? 'translateY(0)' : 'translateY(-100vh)' }}>
-					{children}
+			<div className="ModalContainer" style={{ visibility: props.active ? 'visible' : 'hidden' }}>
+				<div className="ModalBackground" onClick={props.backgroundClicked} />
+				<div
+					className="LoginContainer"
+					style={{ transform: props.active ? 'translateY(0)' : 'translateY(-100vh)' }}
+				>
+					{props.isLogin ? (
+						<form className="LoginForm" onSubmit={props.login}>
+							<h2>login</h2>
+							<label>Email</label>
+							<input
+								placeholder={'Enter email here'}
+								value={props.email}
+								onChange={(e) => props.setEmail(e.target.value)}
+							/>
+							<label>Password</label>
+							<input
+								type="password"
+								placeholder={'Enter password here'}
+								value={props.password}
+								onChange={(e) => props.setPassword(e.target.value)}
+							/>
+							{props.loggingIn ? <Spinner /> : <Button>Login</Button>}
+							<span style={{ marginTop: '1rem' }} onClick={() => props.setIsLogin(false)}>
+								Don't have an account? Signup.
+							</span>
+						</form>
+					) : (
+						<form className="LoginForm" onSubmit={props.signup}>
+							<h2>signup</h2>
+							<label>Email</label>
+							<input
+								placeholder={'Enter email here'}
+								value={props.email}
+								onChange={(e) => props.setEmail(e.target.value)}
+							/>
+							<label>Password</label>
+							<input
+								type="password"
+								placeholder={'Enter password here'}
+								value={props.password}
+								onChange={(e) => props.setPassword(e.target.value)}
+							/>
+							<label>Confirm Password</label>
+							<input
+								type="password"
+								placeholder={'Enter password here'}
+								value={props.confirmPassword}
+								onChange={(e) => props.setConfirmPassword(e.target.value)}
+							/>
+							{props.loggingIn ? <Spinner /> : <Button>Signup</Button>}
+							<span onClick={() => props.setIsLogin(true)}>Already have an account? Login.</span>
+						</form>
+					)}
 				</div>
 			</div>
 			<style jsx>{`
@@ -87,6 +151,14 @@ export default ({ active, backgroundClicked, children }: Props) => {
 					-webkit-text-rendering: optimizeLegibility;
 					-moz-text-rendering: optimizeLegibility;
 					text-rendering: optimizeLegibility;
+				}
+
+				.LoginForm {
+					display: flex;
+					flex-direction: column;
+					width: 100%;
+					align-items: center;
+					justify-content: center;
 				}
 			`}</style>
 		</React.Fragment>

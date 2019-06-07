@@ -1,9 +1,9 @@
 import React from 'react';
 
 type Props = {
-    clicked?: () => void,
-    selected: boolean,
-	children?: string
+	clicked?: () => void;
+	selected: boolean;
+	children?: string;
 };
 
 export default (props: Props) => {

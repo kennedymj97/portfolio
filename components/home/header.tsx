@@ -1,7 +1,7 @@
 import React from 'react';
 import WordSlider from './word-slider';
 
-const header = () => (
+export default () => (
 	<React.Fragment>
 		<header className="header-container" id="header">
 			<h1 className="title-1">Matthew Kennedy</h1>
@@ -49,5 +49,3 @@ const header = () => (
 		`}</style>
 	</React.Fragment>
 );
-
-export default header;

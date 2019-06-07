@@ -1,6 +1,6 @@
 import React from 'react';
 
-const footer = () => (
+export default () => (
 	<React.Fragment>
 		<footer className="footer">
 			<div className="footer-quote">
@@ -8,7 +8,7 @@ const footer = () => (
 				<span>-Confucius</span>
 			</div>
 			<div className="footer-contact">
-				<h3 className='footer-contact-heading'>Get in touch</h3>
+				<h3 className="footer-contact-heading">Get in touch</h3>
 				<span>kennedymj97@gmail.com</span>
 				<div className="footer-contact-icons">
 					<a href="https://github.com/kennedymj97">
@@ -74,5 +74,3 @@ const footer = () => (
 		`}</style>
 	</React.Fragment>
 );
-
-export default footer;

@@ -2,12 +2,12 @@ import React from 'react';
 import Head from 'next/head';
 
 type Props = {
-	title?: string,
-	description?: string,
-	children: JSX.Element[]
-}
+	title?: string;
+	description?: string;
+	children: JSX.Element[];
+};
 
-const page = (props: Props) => (
+export default (props: Props) => (
 	<React.Fragment>
 		<Head>
 			<meta charSet="UTF-8" />
@@ -59,10 +59,8 @@ const page = (props: Props) => (
 			html,
 			body {
 				background-color: #fff;
-				color: rgba(0,0,0,0.8);
+				color: rgba(0, 0, 0, 0.8);
 			}
 		`}</style>
 	</React.Fragment>
 );
-
-export default page;

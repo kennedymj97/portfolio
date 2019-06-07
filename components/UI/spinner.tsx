@@ -1,6 +1,6 @@
 import React from 'react';
 
-const spinner = () => (
+export default () => (
 	<React.Fragment>
 		<div className="loader">Loading...</div>
 		<style jsx>{`
@@ -74,5 +74,3 @@ const spinner = () => (
 		`}</style>
 	</React.Fragment>
 );
-
-export default spinner;

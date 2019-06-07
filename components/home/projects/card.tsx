@@ -21,8 +21,16 @@ export default (props: Props) => {
 				<div className="body-container">
 					<span className="info">{props.info}</span>
 					<div className="buttons-container">
-						{props.github ? <MinimalButton url={props.github} newTab>Github</MinimalButton> : null}
-						{props.url ? <MinimalButton url={props.url} newTab>View project</MinimalButton> : null}
+						{props.github ? (
+							<MinimalButton url={props.github} newTab>
+								Github
+							</MinimalButton>
+						) : null}
+						{props.url ? (
+							<MinimalButton url={props.url} newTab>
+								View project
+							</MinimalButton>
+						) : null}
 					</div>
 				</div>
 			</div>

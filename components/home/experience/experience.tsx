@@ -1,45 +1,14 @@
 import React from 'react';
 
 import ExperienceCard from './card';
-import MinimalButton from '../../UI/button-minimal'
+import MinimalButton from '../../UI/button-minimal';
 
-const experienceInfo = [
-	{
-		id: 0,
-		role: 'Computer Vision Intern',
-		placeDate: 'Rolls-Royce | June 2018 - Present',
-		experiences: [
-			'Researching and developing deep learning applications. Currently have 2 patents being produced based on my work.',
-			'Designing, testing and implementing IoT vision systems.',
-			'Gained experience with Python (PyTorch, Fastai, Django Rest Framework, OpenCV), Javascript (React, Next.js), HTML and CSS.'
-		],
-		imgSource: '../../static/code.jpg'
-	},
-	{
-		id: 1,
-		role: 'Volunteer Sports Leader',
-		placeDate: 'University of Nottingham | 2016 - 2018',
-		experiences: [
-			'Created and led sessions with a team of volunteers, using imaginative games to teach children important life skills.',
-			'Assisted with the training of new volunteers.'
-		],
-		imgSource: '../../static/sports_leader.jpg'
-	},
-	{
-		id: 2,
-		role: 'Volunteer Conservationist',
-		placeDate: 'Projects Abroad | June - August 2017',
-		experiences: [
-			'Planted hundreds of mangrove trees in an effort to revive habitats and reduce coastal erosion.',
-			'Carred out fish surveys and coral propagation projects to monitor and preserve coral reefs.',
-			'Educated young people in the local population on conservation'
-		],
-		imgSource: '../../static/conservation.jpg'
-	}
-];
+type Props = {
+	experiences: Experience[];
+};
 
-export default () => {
-	const experienceCards = experienceInfo.map((ele) => (
+export default (props: Props) => {
+	const experienceCards = props.experiences.map((ele) => (
 		<ExperienceCard
 			key={ele.id}
 			role={ele.role}

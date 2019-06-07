@@ -1,20 +1,25 @@
-import React from 'react'
+import React from 'react';
 
 type Props = {
-    url?: string,
-    newTab: boolean,
-    clicked?: () => void,
-    children: JSX.Element[] | JSX.Element | string
-}
+	url?: string;
+	newTab: boolean;
+	clicked?: () => void;
+	children: JSX.Element[] | JSX.Element | string;
+};
 
 export default (props: Props) => {
-    return (
-        <React.Fragment>
-            <a href={props.url ? props.url : undefined} onClick={props.clicked ? props.clicked : () => null} className="button-minimal" target={props.newTab ? "_blank" : undefined}>
-                {props.children}
-            </a>
-            <style jsx>{`
-                .button-minimal {
+	return (
+		<React.Fragment>
+			<a
+				href={props.url ? props.url : undefined}
+				onClick={props.clicked ? props.clicked : () => null}
+				className="button-minimal"
+				target={props.newTab ? '_blank' : undefined}
+			>
+				{props.children}
+			</a>
+			<style jsx>{`
+				.button-minimal {
 					text-decoration: none;
 					color: #0076ff;
 					border-radius: 7px;
@@ -26,7 +31,7 @@ export default (props: Props) => {
 				.button-minimal:hover {
 					background: rgba(0, 118, 255, 0.1);
 				}
-            `}</style>
-        </React.Fragment>
-    )
-}
+			`}</style>
+		</React.Fragment>
+	);
+};

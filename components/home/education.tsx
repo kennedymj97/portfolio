@@ -55,7 +55,7 @@ export default () => (
 				margin-bottom: 1rem;
 			}
 
-			@media(max-width: 600px) {
+			@media (max-width: 600px) {
 				.education {
 					max-width: 85%;
 					margin: 2rem auto;
