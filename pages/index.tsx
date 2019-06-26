@@ -95,7 +95,7 @@ export default () => {
 	// };
 
 	const windowWidth = useWindowWidth();
-	const [ numOfProjects, setNumOfProjects ] = useState<number>(3);
+	const [ numOfProjects, setNumOfProjects ] = useState<number>(0);
 
 	const findNumOfProjects = () => {
 		if (windowWidth) {
