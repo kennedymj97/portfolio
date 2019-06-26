@@ -52,9 +52,11 @@ export default (props: Props) => (
 				width: 40%;
 			}
 
-			@media (max-width: 600px) {
+			@media (max-width: 960px) {
 				.experience-card {
 					flex-direction: column;
+					max-width: 450px;
+					margin: 0 auto 2rem auto;
 				}
 
 				.experience-details {

@@ -4,7 +4,7 @@ type Props = {
 	url?: string;
 	newTab: boolean;
 	clicked?: () => void;
-	children: JSX.Element[] | JSX.Element | string;
+	children: JSX.Element[] | JSX.Element | string | [JSX.IntrinsicElements, string];
 };
 
 export default (props: Props) => {
@@ -24,8 +24,10 @@ export default (props: Props) => {
 					color: #0076ff;
 					border-radius: 7px;
 					transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-					padding: 0.25rem 0.5rem;
+					padding: 0.1rem 0.3rem;
 					cursor: pointer;
+					border: 1px solid #0076ff;
+					margin: 5px;
 				}
 
 				.button-minimal:hover {

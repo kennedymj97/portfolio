@@ -64,7 +64,6 @@ export default (props: Props) => {
 
 				.cards-container {
 					display: grid;
-					width: 100%;
 					grid-template-columns: repeat(3, 1fr);
 					grid-gap: 3vh;
 					margin-bottom: 2rem;
@@ -72,6 +71,19 @@ export default (props: Props) => {
 
 				.show-button-text {
 					padding-right: 10px;
+				}
+
+				@media (max-width: 1260px) {
+					.cards-container {
+						grid-template-columns: repeat(2, 1fr);
+						max-width: 85%;
+					}
+				}
+
+				@media (max-width: 800px) {
+					.cards-container {
+						grid-template-columns: 1fr;
+					}
 				}
 			`}</style>
 		</React.Fragment>

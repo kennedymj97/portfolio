@@ -33,17 +33,30 @@ export default () => (
 				margin-bottom: 0;
 			}
 
-			@media (max-width: 600px) {
+			@media (max-width: 1260px) {
 				.header-container {
 					max-width: 85%;
 				}
+			}
 
+			@media (max-width: 600px) {
 				.title-1 {
 					font-size: 1.7em;
+					margin-bottom: 0.85rem;
 				}
 
 				.title-2 {
 					font-size: 2.0em;
+				}
+			}
+
+			@media (max-width: 370px) {
+				.title-1 {
+					font-size: 1.5rem;
+				}
+
+				.title-2 {
+					font-size: 1.8rem;
 				}
 			}
 		`}</style>

@@ -50,7 +50,7 @@ export default (props: Props) => {
 					width: 100%;
 				}
 
-				@media (max-width: 600px) {
+				@media (max-width: 1260px) {
 					.experience-container {
 						max-width: 85%;
 					}

@@ -5,8 +5,7 @@ export default () => (
 		<section className="about">
 			{/* <img className='about-img' src="../static/snowden1.jpg" /> */}
 			<blockquote className="about-quote">
-				I want to work at the forefront of technology; building products, solving complex problems and learning
-				every day.
+				Passionate about software; love building products, solving complex problems and learning every day.
 			</blockquote>
 		</section>
 		<style jsx>{`

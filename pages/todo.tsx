@@ -22,11 +22,7 @@ TODOS:
 
 */
 
-<<<<<<< HEAD
-const BASE_URL: string = 'http://ec2-34-244-114-95.eu-west-1.compute.amazonaws.com:8080';
-=======
 const BASE_URL: string = 'https://api.mattkennedy.io';
->>>>>>> 4008b56edff40d5552f2ef7c49c0a1323abaa04d
 
 export default () => {
 	// variable for the task input field

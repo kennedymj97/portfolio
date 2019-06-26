@@ -29,11 +29,11 @@ export default (props: Props) => (
 		`}</style>
 		<style jsx global>{`
 			html {
-				line-height: 1.15;
 				-webkit-text-size-adjust: 100%;
 				height: 100%;
 				box-sizing: border-box;
 				scroll-behavior: smooth;
+				max-width: 100%;
 			}
 			*,
 			*:before,
@@ -60,6 +60,7 @@ export default (props: Props) => (
 			body {
 				background-color: #fff;
 				color: rgba(0, 0, 0, 0.8);
+				overflow-x: hidden;
 			}
 		`}</style>
 	</React.Fragment>

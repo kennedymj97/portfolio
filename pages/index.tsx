@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Page from '../components/home/page';
 import Header from '../components/home/header';
@@ -7,6 +7,7 @@ import Projects from '../components/home/projects/projects';
 import Education from '../components/home/education';
 import Experience from '../components/home/experience/experience';
 import Footer from '../components/home/footer';
+import useWindowWidth from '../hooks/useWindowWidth';
 
 const projects: Project[] = [
 	{
@@ -79,12 +80,48 @@ const experienceInfo: Experience[] = [
 ];
 
 export default () => {
+	// const setNumOfCards = () => {
+	// 	let numOfCards: Number = 3;
+
+	// 	if (windowWidth) {
+	// 		if (windowWidth < 1260) {
+	// 			numOfCards = 2;
+	// 		} else if (windowWidth < 600) {
+	// 			numOfCards = 1;
+	// 		}
+	// 	}
+
+	// 	return numOfCards
+	// };
+
+	const windowWidth = useWindowWidth();
 	const [ numOfProjects, setNumOfProjects ] = useState<number>(3);
+
+	const findNumOfProjects = () => {
+		if (windowWidth) {
+			if (windowWidth < 800) {
+				setNumOfProjects(1);
+			} else if (windowWidth < 1260) {
+				setNumOfProjects(2);
+			} else {
+				setNumOfProjects(3);
+			}
+		}
+	};
+
+	useEffect(
+		() => {
+			findNumOfProjects();
+		},
+		[ windowWidth ]
+	);
+
+	console.log(numOfProjects);
 
 	const projectCards = projects.slice(0, numOfProjects);
 
 	const toggleProjects = () => {
-		numOfProjects === projects.length ? setNumOfProjects(3) : setNumOfProjects(projects.length);
+		numOfProjects === projects.length ? findNumOfProjects() : setNumOfProjects(projects.length);
 	};
 
 	return (
