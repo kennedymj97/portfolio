@@ -116,8 +116,6 @@ export default () => {
 		[ windowWidth ]
 	);
 
-	console.log(numOfProjects);
-
 	const projectCards = projects.slice(0, numOfProjects);
 
 	const toggleProjects = () => {
