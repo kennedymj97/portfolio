@@ -22,7 +22,7 @@ TODOS:
 
 */
 
-const BASE_URL: string = 'https://api.mattkennedy.io';
+const BASE_URL: string = 'https://api.mattkennedy.io/todo';
 
 export default () => {
 	// variable for the task input field
