@@ -2,3 +2,4 @@
   from = "/2048"
   to = "https://msc.mattkennedy.io/"
   status = 200
+  headers = {Host = "msc.mattkennedy.io"}
