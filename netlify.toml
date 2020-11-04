@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/"
+  to = "https://msc.mattkennedy.io/"
+  status = 200
