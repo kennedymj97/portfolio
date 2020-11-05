@@ -1,5 +1,4 @@
 [[redirects]]
-  from = "/2048"
-  to = "https://msc.mattkennedy.io/"
+  from = "/haskell-net"
+  to = "https://kennedymj97.github.io/haskell-net/frontend/index.html"
   status = 200
-  headers = {Host = "msc.mattkennedy.io"}
