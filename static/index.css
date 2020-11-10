@@ -577,10 +577,6 @@ video {
   height: auto;
 }
 
-html {
-  overflow-y: scroll;
-}
-
 .container {
   width: 100%;
 }
