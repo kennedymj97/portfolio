@@ -25,9 +25,10 @@
       strategies, making billions of moves, and as a result having a fast game
       engine was an essential foundation. To put the engine through its paces an
       expectimax algorithm was used. This algorithm can perform very well on
-      2048, often reaching the 32768 tile. To achieve a score so large N moves
-      need to be made and a total of N game states need to be considered. If the
-      engine was not extremely well optimised this would take a very long time.
+      2048, often reaching the 32768 tile. To achieve a score so large, more
+      than 18000 moves and over 90 billion game states need to be considered. If
+      the engine was not extremely well optimised this would take a very long
+      time.
     </P>
     <span>In this post I discuss the following:</span>
     <ul class="mb-4 list-disc list-inside">
@@ -170,13 +171,72 @@
     </P>
     <P>
       DISCUSS THE PERFORMANCE OF THE ENGINE.
+      Web time for move 100 micro seconds.
+      Optimised time for move 3 nano seconds.
     </P>
     <H2>Expectimax</H2>
     <P>
-      Description of how the algorithm works.
+      The expectimax algorithm is similar to the more popular minimax algorithm.
+      In the minimax algorithm when deciding the best move to make one considers
+      the best possible move of the opponent. In the expectimax algorithm the
+      opponents moves are weighted by the probability that the opponent will
+      make that move. For the game of 2048 the opponent can be considered to be
+      random tile additions to the board. Therefore, every empty tile location
+      with both the 2 and 4 tiles are considered. The players options are of
+      course the 4 move directions. The move the algorithm will recommend is the
+      one which, after considering all the possibilites will likely return the
+      highest score. This score is not the score of the game state but is a
+      heuristic score designed to encourage desirable game states. I did not
+      make any adaptions to previous work and they are described very well here
+      so check it out if you are interested (ADD LINK IN THIS). The image below
+      shows an example of the start of the expectimax search tree if there are 3
+      empty tiles after shifting in any of the directions. CREATE A CHART BELOW
+      TO DEMO EXPECTIMAX.
     </P>
     <P>
-      How did I get some performance benefits and what were the results compared to Nneonneo single threaded (and my single threaded which is equivalent to Nneonneo).
+      As the depth of the search tree increases the number of states that need
+      to be considered grows exponentially. The search depth of the expectimax
+      algorithm is calculated as follows.
     </P>
+    <P>
+      search_depth = max(3, number_of_unique_tiles - 2) -- MAKE THIS FANCY
+      EQUATION LOOKING
+    </P>
+    <P>
+      At this search depth sometimes over 90 million different game states need
+      to be considered for an individual move. For games that reach the 32768
+      tile more than 18000 moves can be made and more than 90 billion game
+      states considered. Note: the algorithm used on this site limits the search
+      depth to a maximum of 6 to make it run faster, this does sacrifice
+      performance but still regularly achieves the 16384 tile.
+    </P>
+    <P>
+      How did I get some performance benefits and what were the results compared
+      to Nneonneo single threaded (and my single threaded which is equivalent to
+      Nneonneo). The highly optimised rust engine along with the expectimax
+      algortihm was as fast as the C++ implementation by Nneonneo. As I used the
+      heauristics he found the score the algorithm achieved was also the same. I
+      improved the speed of the expectimax algorithm using multithreading. Each
+      of the initial branches was evaluated in its own thread, making the
+      algorithm run in 4 threads as opposed to 1. On my PC the multithreaded
+      version would make a move in an average of 20ms compared to the 42ms of
+      the single threaded version. The multithreaded version took under half the
+      time of the single threaded version. As far as I am aware, this is the
+      best performing expectimax algorithm for the game of 2048 created. As the
+      expectimax algorithm is one of the best AIs created, the AI produced in
+      this project is one of the best performing in the world! I expect that the
+      search tree could be paralellized further, however I didn't want to spawn
+      a new thread for every branch as I thought the overhead for thread
+      creation would likely outweigh the benefits. I did not mess around with
+      this however as producing the fastest expectimax algorithm was not the
+      goal of the project.
+    </P>
+    <P>
+      Discuss the performance of the expectimax algorithm.
+
+      USE A GRAPH
+    </P>
+    <H2>Summary</H2>
+    <P>Summarise the post</P>
   </div>
 </div>
