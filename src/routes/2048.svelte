@@ -1,6 +1,8 @@
 <script>
   import Game from '../components/2048.svelte';
   import H2 from '../components/H2.svelte';
+  import H3 from '../components/H3.svelte';
+  import H4 from '../components/H4.svelte';
   import P from '../components/P.svelte';
 </script>
 
@@ -8,172 +10,173 @@
   <title>2048 AI</title>
 </svelte:head>
 
-<div class="flex flex-col items-center mx-auto max-w-screen-lg">
-  <h1 class="my-6 text-4xl font-semibold text-center">
-    Building a highly optimised 2048 AI
-  </h1>
-  <P>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices metus
-    ac feugiat aliquet. Duis placerat, ipsum vitae iaculis maximus, elit sem
-    dictum justo, quis euismod mi justo at turpis. Sed nulla mi, elementum nec
-    pulvinar mattis, imperdiet ut lorem. Pellentesque interdum orci at velit
-    mattis, quis mattis arcu ultricies. Praesent accumsan gravida dolor in
-    efficitur. Quisque pharetra nibh mauris, non dignissim lectus placerat sit
-    amet. Phasellus porttitor vitae nisl id pharetra. Integer tincidunt, sapien
-    quis facilisis consectetur, neque velit convallis dolor, vel ultrices nulla
-    tellus a eros.
-  </P>
-  <hr class="w-full divide-y divide-gray-300"/>
-  <Game></Game>
-  <hr class="w-full divide-y divide-gray-300"/>
-  <div class="flex flex-col mb-16">
-    <H2 class="mt-0">About</H2>
+<div class="flex flex-col">
+  <div class="flex flex-col px-4 mx-auto max-w-screen-lg">
+    <h1 class="my-6 text-4xl font-semibold">
+      Producing a highly optimised engine for the game 2048
+    </h1>
     <P>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices
-      metus ac feugiat aliquet. Duis placerat, ipsum vitae iaculis maximus, elit
-      sem dictum justo, quis euismod mi justo at turpis. Sed nulla mi, elementum
-      nec pulvinar mattis, imperdiet ut lorem. Pellentesque interdum orci at
-      velit mattis, quis mattis arcu ultricies. Praesent accumsan gravida dolor
-      in efficitur. Quisque pharetra nibh mauris, non dignissim lectus placerat
-      sit amet. Phasellus porttitor vitae nisl id pharetra. Integer tincidunt,
-      sapien quis facilisis consectetur, neque velit convallis dolor, vel
-      ultrices nulla tellus a eros.
+      The goal of this project was to produce a highly optimised engine for the
+      game 2048. The game engine implements all the behaviourneeded to play the
+      game 2048, such as shifting and merging tiles, inserting random newtiles,
+      and calculating the score. My MSc Thesis was using Artificial Intelligence
+      methods to find strategies for the game of 2048 that human players could
+      understand and replicate. This required testing millions of possible
+      strategies, making billions of moves, and as a result having a fast game
+      engine was an essential foundation. To put the engine through its paces an
+      expectimax algorithm was used. This algorithm can perform very well on
+      2048, often reaching the 32768 tile. To achieve a score so large N moves
+      need to be made and a total of N game states need to be considered. If the
+      engine was not extremely well optimised this would take a very long time.
+    </P>
+    <span>In this post I discuss the following:</span>
+    <ul class="mb-4 list-disc list-inside">
+      <li>Methodology used to create the optimised engine</li>
+      <li>The final implementation of the engine</li>
+      <li>The expectimax algorithm</li>
+    </ul>
+    <P>
+      SUMMARY OF THE OUTCOMES. Speed of the final engine relative to the web
+      engine. Best performing expectimax algorithm (as far as I'm aware), one of
+      the best AIs produced for 2048.
+    </P>
+  </div>
+  <div class="flex items-center justify-center py-8 my-4 bg-gray-100">
+    <Game></Game>
+  </div>
+  <div class="flex flex-col mx-auto mb-16 max-w-screen-lg">
+    <H2>Why Rust?</H2>
+    <P>
+      As performance of the engine was essential it was important that the
+      language used to develop the engine did not introduce significant
+      overhead. Rust was ideal as it has no runtime or garbage collector
+      resulting in performance characteristics similar to C/C++. Rust also has
+      excellent support for WebAssembly, allowing the optimised engine code to
+      be run in the browser. As the goal of the MSc project was to try and find
+      strategies a human could understand user tests were carried out, these
+      user tests were conducted using a site, which can be found HERE.
+      Therefore, being able to use the optimised engine in the browser was
+      essential. It also allowed me to run the expectimax algorithm in the
+      browser as you can see here.
+    </P>
+    <H2>Methodology</H2>
+    <H4>
+      1. Create a basic, unoptimised implementation of the engine along with a
+      test suite.
+    </H4>
+    <P>
+      The basic implementation acted as a starting point. It was a complete
+      engine that fully captured the rules of the game. However, it was not
+      designed with speed in mind. The engine was fast enough for a person or
+      simple computer agents to play (see table 1), but if left unoptimised
+      would have been a significant barrier to developing algorithms that
+      require more computation. The test suite ensured that the implementation
+      fully captured the game rules. As the engine was optimised and the code
+      changed this test suite provided a guarantee that no bugs were being
+      introduced.
+    </P>
+    <H4>
+      2. Research existing approaches to building AI for 2048. See what
+      techniques they used to produce an optimised engine.
+    </H4>
+    <P>
+      This research involved reading papers and posts online from people who
+      were working on developing AIs to play 2048. Of particular interest was a
+      post on Stack Overflow (REFERENCE). The final version of the optimised
+      engine uses the techniques described to achieve a high level of
+      performance.
+    </P>
+    <H4>3. Build an expectimax algorithm to play the game.</H4>
+    <P>
+      This algorithm can require the consideration of over N million game states
+      for an individual move making it a good test for the performance of the
+      engine.
+    </P>
+    <H4>
+      4. Use the profiling tools on a run of the expectimax algorithm. Identify
+      the bottlenecks.
+    </H4>
+    <P>
+      Profiling tools were used to understand which areas of the code were
+      taking the most time and acting as bottlenecks. The Linux tool ‘perf’
+      (Linux, 2020) was used to gather data. To visualise the data generated by
+      ‘perf’ flame graphs were used (Gregg, 2017). This made it easy to identify
+      the code that was taking the most time. One of the flame graphs produced
+      can be seen in Figure 2.
     </P>
     <P>
-      Proin egestas suscipit est ultrices rhoncus. Aenean condimentum tortor
-      eget ipsum aliquet semper. Ut vel euismod leo. Integer ut nisl
-      pellentesque, auctor odio in, viverra metus. Aliquam iaculis, mi in
-      facilisis porta, mauris dolor porta elit, ac consectetur neque lectus at
-      tellus. Morbi erat nisi, sollicitudin quis mi sed, malesuada tincidunt
-      dolor. Sed feugiat magna id enim fringilla mattis. Cras in justo eros.
-      Nunc ornare urna a arcu semper, at pellentesque neque imperdiet. Duis ac
-      varius arcu. Sed dapibus turpis sapien, a cursus leo fringilla at. Nulla
-      facilisi. Proin quis lacinia tellus, quis convallis orci. Morbi tincidunt,
-      ante id dictum imperdiet, sapien justo commodo velit, ut semper lacus
-      ipsum a libero.
+      Profiling the code required an executable that would stress test the
+      engine. The expectimax algorithm developed was perfect for this, the large
+      number of game state considered acts as a great wat to thorougly test the
+      performance of the engine and gather data for profiling.
     </P>
-    <H2 class="text-3xl font-semibold">Process</H2>
+    <P>SHOW EXAMPLE FLAMEGRAPH</P>
+    <H4>
+      5. Create benchmarks for the code identified using the profiling tools.
+    </H4>
     <P>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices
-      metus ac feugiat aliquet. Duis placerat, ipsum vitae iaculis maximus, elit
-      sem dictum justo, quis euismod mi justo at turpis. Sed nulla mi, elementum
-      nec pulvinar mattis, imperdiet ut lorem. Pellentesque interdum orci at
-      velit mattis, quis mattis arcu ultricies. Praesent accumsan gravida dolor
-      in efficitur. Quisque pharetra nibh mauris, non dignissim lectus placerat
-      sit amet. Phasellus porttitor vitae nisl id pharetra. Integer tincidunt,
-      sapien quis facilisis consectetur, neque velit convallis dolor, vel
-      ultrices nulla tellus a eros.
+      Benchmarks were used to measure the performance characteristics of the
+      engine. The benchmarks were created using a library called Criterion
+      (REFERENCE). Criterion stores data from previous benchmarks and uses them
+      to compare to the current benchmark to show the changes in performance.
     </P>
     <P>
-      Proin egestas suscipit est ultrices rhoncus. Aenean condimentum tortor
-      eget ipsum aliquet semper. Ut vel euismod leo. Integer ut nisl
-      pellentesque, auctor odio in, viverra metus. Aliquam iaculis, mi in
-      facilisis porta, mauris dolor porta elit, ac consectetur neque lectus at
-      tellus. Morbi erat nisi, sollicitudin quis mi sed, malesuada tincidunt
-      dolor. Sed feugiat magna id enim fringilla mattis. Cras in justo eros.
-      Nunc ornare urna a arcu semper, at pellentesque neque imperdiet. Duis ac
-      varius arcu. Sed dapibus turpis sapien, a cursus leo fringilla at. Nulla
-      facilisi. Proin quis lacinia tellus, quis convallis orci. Morbi tincidunt,
-      ante id dictum imperdiet, sapien justo commodo velit, ut semper lacus
-      ipsum a libero.
+      The data generated from running the profiling tools on the expectimax
+      algorithm provided insights into what code was causing the bottlenecks in
+      performance. If they did not already exist, benchmarks were created to
+      cover the area of the code identified. The code was then changed in an
+      attempt to make it have higher performance. After making changes the
+      benchmarks were rerun to identify if the changes had improved the
+      performance. If they had the changes would be kept. This process was
+      repeated until there were no further changes to be made to improve the
+      performance of the engine.
+    </P>
+    <H4>6. Edit the code to try to improve the performance.</H4>
+    <P>
+      Use algorithms and data structures found during research along with new
+      ideas of how to improve performance. After making the changes rerun the
+      benchmarks to ensure performance has improved.
+    </P>
+    <H4>
+      7. Repeat steps 4-6 until no further performance improvements can be made
+    </H4>
+    <H2>Implementation</H2>
+    <P>
+      The game state is represented using a single 64-bit integer. This integer
+      is split into 16 4-bit chunks to represent each tile of the board. Each of
+      these 4-bit chunks does not contain the true value of the tile on the
+      board as it is only possible to represent the decimal numbers 0-15.
+      Instead the number represents the exponent of the power of 2 required to
+      get the true tile value. This allows tiles up to the value 32768. The
+      highest possible tile theoretically is 131072. However, even the best AIs
+      have never reached the tile of 65536. The aim of this project was no to
+      try to produce an AI that is the state of the art, as a result, the
+      implementation does not handle cases where the tile is larger than 32768.
+      Bitwise operations are used to interact withthe board state.
     </P>
     <P>
-      Pellentesque accumsan lacus in ipsum blandit lobortis. In sagittis nisi
-      leo, quis pretium purus faucibus et. Cras hendrerit accumsan arcu ut
-      auctor. Sed neque nibh, iaculis in dui pellentesque, ultricies venenatis
-      nulla. Orci varius natoque penatibus et magnis dis parturient montes,
-      nascetur ridiculus mus. Sed tincidunt finibus fringilla. Integer
-      scelerisque mauris in arcu tempor, at pellentesque ex euismod. Aliquam
-      maximus quam felis, in porta eros elementum ac. Nam congue, odio ac
-      vestibulum sagittis, ipsum nunc tincidunt sapien, id finibus mauris ex nec
-      risus. Pellentesque eu urna viverra eros interdum lacinia. Aliquam sit
-      amet congue diam, sed ultrices elit. Morbi eget facilisis dui, eget
-      pulvinar lorem. Cras pulvinar nec sapien sed sagittis. Quisque turpis
-      orci, facilisis at iaculis ac, facilisis sed augue. Aenean blandit erat
-      tincidunt elementum interdum. Phasellus vitae mauris id nisl sagittis
-      ullamcorper.
-    </P>
-    <H2 class="text-3xl font-semibold">Implementation</H2>
-    <P>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices
-      metus ac feugiat aliquet. Duis placerat, ipsum vitae iaculis maximus, elit
-      sem dictum justo, quis euismod mi justo at turpis. Sed nulla mi, elementum
-      nec pulvinar mattis, imperdiet ut lorem. Pellentesque interdum orci at
-      velit mattis, quis mattis arcu ultricies. Praesent accumsan gravida dolor
-      in efficitur. Quisque pharetra nibh mauris, non dignissim lectus placerat
-      sit amet. Phasellus porttitor vitae nisl id pharetra. Integer tincidunt,
-      sapien quis facilisis consectetur, neque velit convallis dolor, vel
-      ultrices nulla tellus a eros.
+      A cache is used to store all the possible shifts of the rows or columns:
+      shift row left, shift row right, shift column up and shift column down. As
+      each row/column can be represented using a 16-bit integer there are 65536
+      different possibile states. When the engine is initialies the resulting
+      value after shifting for each direction is calculated and the results are
+      stored in an array of length 65536. This means there is some initial
+      overhead to generate the arrays, but after calculating shifts only
+      requires an array lookup rather than a more complicated computation. There
+      is also a cache that contains the resulting score for each row. For the
+      use cases I am concerned about, which require consideration of a huge
+      number of game states, this initial overhead to produce the cache is well
+      worth it.
     </P>
     <P>
-      Proin egestas suscipit est ultrices rhoncus. Aenean condimentum tortor
-      eget ipsum aliquet semper. Ut vel euismod leo. Integer ut nisl
-      pellentesque, auctor odio in, viverra metus. Aliquam iaculis, mi in
-      facilisis porta, mauris dolor porta elit, ac consectetur neque lectus at
-      tellus. Morbi erat nisi, sollicitudin quis mi sed, malesuada tincidunt
-      dolor. Sed feugiat magna id enim fringilla mattis. Cras in justo eros.
-      Nunc ornare urna a arcu semper, at pellentesque neque imperdiet. Duis ac
-      varius arcu. Sed dapibus turpis sapien, a cursus leo fringilla at. Nulla
-      facilisi. Proin quis lacinia tellus, quis convallis orci. Morbi tincidunt,
-      ante id dictum imperdiet, sapien justo commodo velit, ut semper lacus
-      ipsum a libero.
+      DISCUSS THE PERFORMANCE OF THE ENGINE.
+    </P>
+    <H2>Expectimax</H2>
+    <P>
+      Description of how the algorithm works.
     </P>
     <P>
-      Pellentesque accumsan lacus in ipsum blandit lobortis. In sagittis nisi
-      leo, quis pretium purus faucibus et. Cras hendrerit accumsan arcu ut
-      auctor. Sed neque nibh, iaculis in dui pellentesque, ultricies venenatis
-      nulla. Orci varius natoque penatibus et magnis dis parturient montes,
-      nascetur ridiculus mus. Sed tincidunt finibus fringilla. Integer
-      scelerisque mauris in arcu tempor, at pellentesque ex euismod. Aliquam
-      maximus quam felis, in porta eros elementum ac. Nam congue, odio ac
-      vestibulum sagittis, ipsum nunc tincidunt sapien, id finibus mauris ex nec
-      risus. Pellentesque eu urna viverra eros interdum lacinia. Aliquam sit
-      amet congue diam, sed ultrices elit. Morbi eget facilisis dui, eget
-      pulvinar lorem. Cras pulvinar nec sapien sed sagittis. Quisque turpis
-      orci, facilisis at iaculis ac, facilisis sed augue. Aenean blandit erat
-      tincidunt elementum interdum. Phasellus vitae mauris id nisl sagittis
-      ullamcorper.
-    </P>
-    <H2 class="text-3xl font-semibold">Performance</H2>
-    <P>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices
-      metus ac feugiat aliquet. Duis placerat, ipsum vitae iaculis maximus, elit
-      sem dictum justo, quis euismod mi justo at turpis. Sed nulla mi, elementum
-      nec pulvinar mattis, imperdiet ut lorem. Pellentesque interdum orci at
-      velit mattis, quis mattis arcu ultricies. Praesent accumsan gravida dolor
-      in efficitur. Quisque pharetra nibh mauris, non dignissim lectus placerat
-      sit amet. Phasellus porttitor vitae nisl id pharetra. Integer tincidunt,
-      sapien quis facilisis consectetur, neque velit convallis dolor, vel
-      ultrices nulla tellus a eros.
-    </P>
-    <P>
-      Proin egestas suscipit est ultrices rhoncus. Aenean condimentum tortor
-      eget ipsum aliquet semper. Ut vel euismod leo. Integer ut nisl
-      pellentesque, auctor odio in, viverra metus. Aliquam iaculis, mi in
-      facilisis porta, mauris dolor porta elit, ac consectetur neque lectus at
-      tellus. Morbi erat nisi, sollicitudin quis mi sed, malesuada tincidunt
-      dolor. Sed feugiat magna id enim fringilla mattis. Cras in justo eros.
-      Nunc ornare urna a arcu semper, at pellentesque neque imperdiet. Duis ac
-      varius arcu. Sed dapibus turpis sapien, a cursus leo fringilla at. Nulla
-      facilisi. Proin quis lacinia tellus, quis convallis orci. Morbi tincidunt,
-      ante id dictum imperdiet, sapien justo commodo velit, ut semper lacus
-      ipsum a libero.
-    </P>
-    <P>
-      Pellentesque accumsan lacus in ipsum blandit lobortis. In sagittis nisi
-      leo, quis pretium purus faucibus et. Cras hendrerit accumsan arcu ut
-      auctor. Sed neque nibh, iaculis in dui pellentesque, ultricies venenatis
-      nulla. Orci varius natoque penatibus et magnis dis parturient montes,
-      nascetur ridiculus mus. Sed tincidunt finibus fringilla. Integer
-      scelerisque mauris in arcu tempor, at pellentesque ex euismod. Aliquam
-      maximus quam felis, in porta eros elementum ac. Nam congue, odio ac
-      vestibulum sagittis, ipsum nunc tincidunt sapien, id finibus mauris ex nec
-      risus. Pellentesque eu urna viverra eros interdum lacinia. Aliquam sit
-      amet congue diam, sed ultrices elit. Morbi eget facilisis dui, eget
-      pulvinar lorem. Cras pulvinar nec sapien sed sagittis. Quisque turpis
-      orci, facilisis at iaculis ac, facilisis sed augue. Aenean blandit erat
-      tincidunt elementum interdum. Phasellus vitae mauris id nisl sagittis
-      ullamcorper.
+      How did I get some performance benefits and what were the results compared to Nneonneo single threaded (and my single threaded which is equivalent to Nneonneo).
     </P>
   </div>
 </div>
