@@ -1,5 +1,15 @@
-const tailwindcss = require('tailwindcss');
+const tailwind = require("tailwindcss");
+const cssnano = require("cssnano");
+const presetEnv = require("postcss-preset-env")({
+  features: {
+    // enable nesting
+    "nesting-rules": true,
+  },
+});
 
-module.exports = {
-  plugins: [tailwindcss('./tailwind.config.js')],
-};
+const plugins =
+  process.env.NODE_ENV === "production"
+    ? [tailwind, presetEnv, cssnano]
+    : [tailwind, presetEnv];
+
+module.exports = { plugins };
