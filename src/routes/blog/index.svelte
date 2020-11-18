@@ -19,7 +19,7 @@
 </svelte:head>
 
 <div class="container">
-  <h1 class="mb-10 text-4xl font-bold lg:text-5xl">Blog</h1>
+  <h1>Blog</h1>
   {#each posts as post, index} {#if index}
   <hr class="my-10" />
   {/if}

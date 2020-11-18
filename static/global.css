@@ -586,6 +586,22 @@ video {
   height: auto;
 }
 
+body {
+  color: #222;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.25rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
 code {
   font-family: "SF Mono", menlo, inconsolata, monospace;
   font-size: calc(1em - 2px);
@@ -595,6 +611,10 @@ code {
   border-radius: 2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#sapper {
+  width: 100vw;
 }
 
 .container {

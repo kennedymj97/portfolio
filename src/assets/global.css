@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+      color: #222;
+  }
+
+  h1 {
+      @apply mb-10 text-4xl font-bold lg:text-5xl;
+  }
+
   code {
     font-family: "SF Mono", menlo, inconsolata, monospace;
     font-size: calc(1em - 2px);
@@ -12,5 +20,9 @@
     border-radius: 2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  #sapper {
+      width: 100vw;
   }
 }

@@ -4,19 +4,10 @@
 	export let segment;
 </script>
 
-<style>
-	main {
-		position: relative;
-		max-width: 56em;
-		background-color: white;
-		padding: 2em;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-</style>
+<div class="relative flex mx-auto mt-6 max-w-screen-lg">
+  <Nav {segment}/>
+  <main class="relative flex-grow">
+  	<slot></slot>
+  </main>
+</div>
 
-<Nav {segment}/>
-
-<main>
-	<slot></slot>
-</main>
