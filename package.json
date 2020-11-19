@@ -7,7 +7,7 @@
     "watch:css": "postcss src/assets/global.css -o static/global.css -w",
     "watch:dev": "sapper dev",
     "build": "run-s build:css build:sapper",
-    "build:css": "NODE_ENV=production npx tailwindcss src/assets/global.css -o static/global.css",
+    "build:css": "NODE_ENV=production postcss src/assets/global.css -o static/global.css",
     "build:sapper": "sapper build --legacy",
     "build:export": "sapper export --legacy",
     "export": "run-s build:css build:export",
