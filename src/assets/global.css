@@ -21,8 +21,4 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  #sapper {
-      width: 100vw;
-  }
 }

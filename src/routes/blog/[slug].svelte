@@ -21,7 +21,7 @@
   <title>{post.title}</title>
 </svelte:head>
 
-<div class="mx-auto prose lg:prose-xl">
+<div class="mx-auto prose lg:prose-lg">
   <header>
     <p>{post.printDate} ~ {post.printReadingTime}</p>
     <h1>{post.title}</h1>

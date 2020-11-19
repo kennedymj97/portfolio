@@ -4,9 +4,9 @@
 	export let segment;
 </script>
 
-<div class="relative flex mx-auto mt-6 max-w-screen-lg">
+<div class="relative flex flex-col p-6 mx-auto max-w-screen-lg md:flex-row">
   <Nav {segment}/>
-  <main class="relative flex-grow">
+  <main class="flex-grow md:ml-40 lg:ml-56">
   	<slot></slot>
   </main>
 </div>

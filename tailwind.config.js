@@ -1,12 +1,6 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
-  experimental: {
-    uniformColorPalette: true,
-    extendedFontSizeScale: true,
-    applyComplexClasses: true,
-  },
+  future: {},
+  experimental: {},
   purge: {
     // needs to be set if we want to purge all unused
     // @tailwind/typography styles
@@ -14,7 +8,8 @@ module.exports = {
     content: ["./src/**/*.svelte", "./src/**/*.html"],
   },
   theme: {
-    extend: {},
+    extend: {
+    },
     typography: {
       default: {
         css: {
