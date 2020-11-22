@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Contact</title>
+    <title>Matthew Kennedy | Contact</title>
 </svelte:head>
 
 <h1>Contact Me</h1>

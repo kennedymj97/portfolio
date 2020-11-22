@@ -4,7 +4,7 @@
 
 <style lang="postcss">
     .nav-item {
-        @apply font-semibold text-lg text-gray-700 hover:text-purple-700 hover:underline my-2;
+        @apply font-semibold text-lg text-gray-700 hover-hover:hover:text-purple-700 hover-hover:hover:underline my-2;
     }
 </style>
 

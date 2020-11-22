@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-  <title>Blog</title>
+  <title>Matthew Kennedy | Blog</title>
 </svelte:head>
 
 <div class="container">

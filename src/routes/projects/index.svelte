@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-    <title>Projects</title>
+    <title>Matthew Kennedy | Projects</title>
 </svelte:head>
 
 <h1>Projects</h1>
