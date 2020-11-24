@@ -13,10 +13,8 @@ export async function post(req, res, next) {
   };
                 
   const transporter = nodemailer.createTransport(poolConfig)
-  console.log(req.body)
   
   transporter.sendMail(req.body, (err, info) => {
-    console.log(err)
     if (err) {
       res.writeHead(502, {
         'Content-Type': 'application/json',
@@ -25,8 +23,6 @@ export async function post(req, res, next) {
       let json = JSON.stringify({error: 'Failed to contact the server to send the email'});
       res.end(json);
     } else {
-      console.log(info.envelope);
-      console.log(info.messageId);
       res.end("Email sent successfully");
     }
     transporter.close()

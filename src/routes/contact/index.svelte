@@ -42,7 +42,7 @@
 
         status.message = "Sending the message...";
         status.isError = false;
-        const response = await fetch("/contact/email", {
+        const response = await fetch("/contact", {
             method: "POST",
             body: JSON.stringify({
                 from: "Portfolio Email Service <portoflio.contact.service@gmail.com>",
