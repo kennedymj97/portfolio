@@ -87,7 +87,7 @@
     <Input bind:value={inputInfo.email.value} bind:isValid={inputInfo.email.isValid} type={inputTypes.EMAIL} bind:validateInput={inputInfo.email.validateFn} />
     <Input bind:value={inputInfo.subject.value} bind:isValid={inputInfo.subject.isValid} type={inputTypes.SUBJECT} bind:validateInput={inputInfo.subject.validateFn} />
     <Input bind:value={inputInfo.message.value} bind:isValid={inputInfo.message.isValid} type={inputTypes.MESSAGE} bind:validateInput={inputInfo.message.validateFn} />
-    <input type="submit" class="self-center w-1/2 px-4 py-2 mt-4 text-white bg-indigo-600 rounded outline-none cursor-pointer focus:ring-2 ring-indigo-300 hover-hover:hover:bg-indigo-500" />
+    <input type="submit" value="Send" class="self-center w-1/2 px-4 py-2 mt-4 text-white bg-indigo-600 rounded outline-none cursor-pointer focus:ring-2 ring-indigo-300 hover-hover:hover:bg-indigo-500" />
     {#if status.message !== "" && status.message !== null}
         <span class="self-center mt-4 {status.isError === true ? 'text-red-600' : ''}">{status.message}</span>
     {/if}
