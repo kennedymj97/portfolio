@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex flex-col">
-  <h2 class="mb-4 text-2xl font-semibold lg:text-3xl">
+  <h2 class="mb-4 text-2xl lg:text-3xl">
   	<a target="_blank" class="link" href={src}>
   		{title}
   	</a>
