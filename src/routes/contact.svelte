@@ -1,5 +1,5 @@
 <script>
-    import Input, { inputTypes } from "../../components/Input.svelte";
+    import Input, { inputTypes } from "../components/Input.svelte";
 
     let inputInfo = {
         name: {
@@ -42,7 +42,7 @@
 
         status.message = "Sending the message...";
         status.isError = false;
-        const response = await fetch("/contact", {
+        const response = await fetch("https://portfolio-email-service-ugi7nz6isq-ew.a.run.app", {
             method: "POST",
             body: JSON.stringify({
                 from: "Portfolio Email Service <portoflio.contact.service@gmail.com>",
