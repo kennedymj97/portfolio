@@ -25,6 +25,16 @@
 	<!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
 	%sapper.head%
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-JCJ44Y6QZY"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-JCJ44Y6QZY');
+	</script>
 </head>
 <body>
 	<!-- The application will be rendered inside this element,

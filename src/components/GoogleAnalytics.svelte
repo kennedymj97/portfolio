@@ -1,25 +1,10 @@
-<svelte:head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id={id}"></script>
-</svelte:head>
-
 <script>
-  export let stores;
-  export let id;
-
-  if (typeof window !== "undefined") {
-    window.dataLayer = window.dataLayer || []
-	window.gtag = function gtag() {
-	  window.dataLayer.push(arguments)
-	}
-	window.gtag("js", new Date())
-	window.gtag("config", id, { 'send_page_view': false })
-  }
-
+  import { stores } from '@sapper/app';
   const { page } = stores();
 
   $: {
     if (typeof gtag !== "undefined"){
-	  window.gtag("config", id, {
+	  window.gtag("config", "G-JCJ44Y6QZY", {
 	    page_path: $page.path,
 	  });
     }
