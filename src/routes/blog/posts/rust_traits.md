@@ -7,9 +7,9 @@ Why I now default to using enums to implement polymorphism is Rust.
 
 <!-- more -->
 
-Polymorphism is the term used to describe implementing the same set of functions for multiple different types/objects. A common example is shapes. Each shape can be considered its own type, however will likely implement the same functions as other shapes.
+Polymorphism is the term used to describe implementing the same set of functions for multiple different types. A common example is shapes. Each shape can be considered its own type, however will likely implement the same functions as other shapes.
 
-It is clear that the Rust team took inspiration from functional languages. Rust's enums are algebraic data types which I am familiar with from Haskell and Rust's traits are very similar to Haskell's typeclasses. Typeclasses are the natural way of implementing polymorphism in Haskell. As such, when I started with Rust I defaulted to using traits for polymorphism. Rust is different from Haskell in that it is a low-level language that focuses on performance and therefore requires knowing how much space to allocate for the value of types. This introduces some complications which can make traits a pain to work with. Because of this I now default to using enums for polymorphism.
+It is clear that the Rust team took inspiration from functional languages. Rust's enums are algebraic data types which I am familiar with from Haskell and Rust's traits are very similar to Haskell's typeclasses. Typeclasses are the natural way of implementing polymorphism in Haskell. As such, when I started with Rust I defaulted to using traits for polymorphism. Rust is different from Haskell in that it is a low-level language that focuses on performance and therefore requires knowing how much space to allocate for the value of types. This introduces some complications which can make traits a pain to work with. As a result, I now default to using enums for polymorphism.
 
 This post aims to briefly summarise the use of enums and traits in Rust and why I now tend to favour using enums.
 
@@ -78,7 +78,7 @@ impl Shape {
 }
 ```
 
-## Using traits and enums
+## Using Traits and Enums
 There are a couple of ways of using traits: generics and trait objects. The difference between these is that generics use static dispatch whereas trait objects use dynamic dispatch [\[1\]](#references). For generics the compiler will generate a unique function for each of the types that implement the trait. Consider the `print_area` below, the compiler would actually produce 3 individual functions, one for each of the shapes we implemented.
 
 ```rust
@@ -103,7 +103,7 @@ fn sum_areas(shapes: Vec<Box<dyn Shape>>) -> f64 {
 }
 ```
 
-There are some annoyances with using dynamic dispatch caused by Rust not knowing the size of the trait object. The trait objects must be put behind a reference and the trait must conform to the object safety constraints. For example, say we wanted to clone the vector of shapes. To use clone we need to guarantee that our shapes derive Clone, this can be done using a subtrait. But if we try to make a trait that has Clone as a subtrait we can no longer use this trait as a trait object because of object safety.
+There are some constraints when using dynamic dispatch caused by Rust not knowing the size of the trait object. The trait objects must be put behind a reference and the trait must conform to object safety. For example, say we wanted to clone the vector of shapes. To use clone we need to guarantee that our shapes derive `Clone`, which can be done using a subtrait, but if we try to do this we can no longer use this trait as a trait object because of object safety.
 
 ```rust
 fn sum_areas(shapes: Vec<Box<dyn Shape>>) -> f64 {
@@ -122,7 +122,7 @@ trait Shape: Clone {
 }
 ```
 
-There are workarounds to be able to clone trait objects [\[2\]](#references). But they are a pain and should be avoided if possible.
+There are workarounds to be able to clone trait objects [\[2\]](#references), but they do not feel natural and I avoid them if possible.
  
 Enums can do everything a trait object would but the size of the enum is known and uses static dispatch. Allowing data structures that contain different shapes without having to worry about putting the type behind a reference and object safety constraints. Consider the previous example, one can simply derive clone for the enum and then implement the function, without any complaints from Rust.
 
@@ -142,10 +142,10 @@ fn sum_areas(shapes: Vec<Shape>) -> f64 {
 
 *Note: the amount of space an enum will use is equal to it's largest variant. If one of the variants takes up a lot of space, one should consider putting it behind a reference.*
 
-## Discuss whether to use enums or traits
+## When To Use Enums and Traits
 Currently I default to using enums for polymorphic behaviour as they get all of the benefits of static dispatch without having to deal with object safety issues.
 
-There are still a couple of times that I use traits. The main reason I will use traits is if I want external code to be able to add types, which enums do not allow. I also consider using traits if the behaviour is very generic, such that the interface I am defining is not determined by the types. In this case I am confident I will not be using the types that implement the trait as trait objects so do not run into the issues caused by dynamic dispatch. For example, even if only used in the same module, one would not implement Clone as an enum. Finding such generic behaviour is rare however.
+There are still a couple of times that I use traits. The main reason I will use traits is if I want external code to be able to add types, which enums do not allow. I also consider using traits if the behaviour is very generic, such that the interface I am defining is not determined by the types. In this case I am confident I will not be using the types that implement the trait as trait objects so do not run into the issues caused by dynamic dispatch. For example, even if only used in the same module, one would not implement `Clone` as an enum. Finding such generic behaviour is rare however.
 
 Some people argue that enums produce ugly code with methods that are long and hard to read and hence favour using traits. I disagree, if the methods start to get too long one can extract the logic into separate functions, even grouping these functions into a module if there a large number of methods. In fact, I think this makes the code easier to read. The methods can be used as a table of contents allowing one to view the logic by jumping to the functions, rather than have to search through the code for the individual types.
 
