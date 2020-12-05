@@ -19,7 +19,6 @@
 		<li class="my-2"><a class=nav-item aria-current="{segment === 'contact' ? 'page' : undefined}" href="contact">Contact</a></li>
         <div class="flex items-center mt-4">
             <a target="_blank" href="https://twitter.com/kennedymj97" class="cursor-pointer"><img alt="Twitter logo" src="./Twitter_Logo_WhiteOnBlue.svg" class="h-6 mr-2" /></a> 
-            <a target="_blank" href="https://www.linkedin.com/in/matthew-kennedy-94323a159/" class="cursor-pointer"><img alt="LinkedIn logo" src="./LI-In-Bug.png" class="h-6 mr-2" /></a> 
             <a target="_blank" href="https://github.com/kennedymj97" class="cursor-pointer"><img alt="GitHub logo" src="./GitHub-Mark-64px.png" class="h-6" /></a> 
         </div>
 	</ul>

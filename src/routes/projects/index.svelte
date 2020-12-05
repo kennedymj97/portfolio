@@ -3,14 +3,14 @@
 
 	const projects = [
 		{
-			title: "Building a highly optimised engine for 2048",
-			description: "I built a highly optimised engine for the game of 2048 that allowed billions of possible game states to be evaluated in a short amount of time.",
+			title: "Optimising the 2048 Game Engine",
+			description: "This project optimises the engine for the game 2048, allowing billions of game states to be evaluated in a short period of time. This makes AI algorithms which require a large search space possible.",
 			src: "https://2048-ai.mattkennedy.io/",
 			github: "https://www.github.com/kennedymj97/2048-AI",
 		},
 		{
-			title: "Creating a dependently typed neural network from scratch in Haskell",
-			description: "Dependent types offer extra compile time guarantees that can be very useful for certain programs. This project makes use of dependant types to provide a guarantee that a neural network has the correct number of connections between the layers. Eliminating a common cause of headaches.",
+			title: "Haskell Net: A Dependently Typed Neural Network Library",
+			description: "Dependent types enable logical errors to be caught at compile time. This project makes use of dependant types to provide a guarantee that the neural networks you create have valid connections between the layers. Eliminating a common cause of bugs.",
 			src: "https://kennedymj97.github.io/haskell-net/frontend/index.html",
 			github: "https://www.github.com/kennedymj97/haskell-net",
 		}
