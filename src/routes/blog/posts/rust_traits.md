@@ -164,3 +164,4 @@ In the majority of cases I need polymorphism I now use enums. I tend to only use
 - [The Rust Programming Language Book - Enums and Pattern Matching](https://doc.rust-lang.org/book/ch06-00-enums.html)
 - [The Rust Programming Language Book - Traits: Defining Shared Behaviour](https://doc.rust-lang.org/book/ch10-02-traits.html)
 - [The Rust Programming Language Book - Using Trait Objects That Allow for Values of Different Types](https://doc.rust-lang.org/book/ch17-02-trait-objects.html)
+- [The Rust RFC Book - Object Safety](https://rust-lang.github.io/rfcs/0255-object-safety.html)
