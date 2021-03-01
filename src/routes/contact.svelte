@@ -42,7 +42,7 @@
 
         status.message = "Sending the message...";
         status.isError = false;
-        const response = await fetch("https://portfolio-email-service-ugi7nz6isq-ew.a.run.app", {
+        const response = await fetch("https://portfolio-email-service-fau3eq2qoq-ew.a.run.app", {
             method: "POST",
             body: JSON.stringify({
                 from: "Portfolio Email Service <portoflio.contact.service@gmail.com>",
